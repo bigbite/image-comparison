@@ -1,0 +1,15 @@
+.wp-block-bigbite-image-comparison-item {
+  pointer-events: auto;
+
+  .bigbite-image-comparison-item--uploader {
+    width: 100%;
+    height: 100%;
+    padding: 128px 64px;
+    background: #efefef;
+  }
+
+  & + & .bigbite-image-comparison-item--uploader {
+    text-align: right;
+    background: #dfdfdf;
+  }
+}
