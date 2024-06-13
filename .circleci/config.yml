@@ -13,9 +13,9 @@ jobs:
       - project/setup
       - project/composer-install
       - project/phpcs
-      - project/phpstan
       - project/npm-install
       - project/npm-build
+      - project/phpstan
       - project/create-build
 
 workflows:
