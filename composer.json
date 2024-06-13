@@ -15,6 +15,6 @@
 	},
 	"scripts": {
 		"phpcs": "./vendor/bin/phpcs .",
-		"phpstan": "@php ./vendor/bin/phpstan"
+		"phpstan": "@php ./vendor/bin/phpstan --memory-limit=512M"
 	}
 }
