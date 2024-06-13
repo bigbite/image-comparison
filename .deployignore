@@ -19,3 +19,6 @@ webpack.config.js
 
 .gitignore
 vendor
+.github
+.node-version
+phpstan.neon
