@@ -15,7 +15,7 @@ jobs:
       - project/phpcs
       - project/npm-install
       - project/npm-build
-      - project/phpstan
+      - project/phpstan:
           memory_limit: '512M'
       - project/create-build
 
