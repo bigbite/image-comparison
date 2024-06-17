@@ -27,12 +27,12 @@ if ( file_exists( BIGBITE_IMAGE_COMPARISON_PLUGIN_DIR . '/inc/asset-settings.php
 }
 
 if (
-	! defined( 'IMAGE_COMPARISON_EDITOR_CSS' ) ||
-	! defined( 'IMAGE_COMPARISON_EDITOR_JS' ) ||
-	! defined( 'IMAGE_COMPARISON_SHARED_CSS' ) ||
-	! defined( 'IMAGE_COMPARISON_SHARED_JS' ) ||
-	! defined( 'IMAGE_COMPARISON_EDITOR_DEPENDENCIES' ) ||
-	! defined( 'IMAGE_COMPARISON_VERSION' )
+	! defined( 'BIGBITE_IMAGE_COMPARISON_EDITOR_CSS' ) ||
+	! defined( 'BIGBITE_IMAGE_COMPARISON_EDITOR_JS' ) ||
+	! defined( 'BIGBITE_IMAGE_COMPARISON_SHARED_CSS' ) ||
+	! defined( 'BIGBITE_IMAGE_COMPARISON_SHARED_JS' ) ||
+	! defined( 'BIGBITE_IMAGE_COMPARISON_EDITOR_DEPENDENCIES' ) ||
+	! defined( 'BIGBITE_IMAGE_COMPARISON_VERSION' )
 ) {
 	add_action(
 		'all_admin_notices',

@@ -65,9 +65,9 @@ final class Loader {
 	public function enqueue_block_editor_assets(): void {
 		wp_enqueue_script(
 			self::EDITOR_HANDLE,
-			plugins_url( $this->plugin_name . '/dist/scripts/' . IMAGE_COMPARISON_EDITOR_JS ),
-			IMAGE_COMPARISON_EDITOR_DEPENDENCIES,
-			IMAGE_COMPARISON_VERSION,
+			plugins_url( $this->plugin_name . '/dist/scripts/' . BIGBITE_IMAGE_COMPARISON_EDITOR_JS ),
+			BIGBITE_IMAGE_COMPARISON_EDITOR_DEPENDENCIES,
+			BIGBITE_IMAGE_COMPARISON_VERSION,
 			false
 		);
 	}
@@ -80,24 +80,24 @@ final class Loader {
 	public function enqueue_block_assets(): void {
 		wp_enqueue_style(
 			self::SHARED_HANDLE,
-			plugins_url( $this->plugin_name . '/dist/styles/' . IMAGE_COMPARISON_SHARED_CSS ),
+			plugins_url( $this->plugin_name . '/dist/styles/' . BIGBITE_IMAGE_COMPARISON_SHARED_CSS ),
 			[],
-			IMAGE_COMPARISON_VERSION
+			BIGBITE_IMAGE_COMPARISON_VERSION
 		);
 
 		if ( is_admin() ) {
 			wp_enqueue_style(
 				self::EDITOR_HANDLE,
-				plugins_url( $this->plugin_name . '/dist/styles/' . IMAGE_COMPARISON_EDITOR_CSS ),
+				plugins_url( $this->plugin_name . '/dist/styles/' . BIGBITE_IMAGE_COMPARISON_EDITOR_CSS ),
 				[],
-				IMAGE_COMPARISON_VERSION
+				BIGBITE_IMAGE_COMPARISON_VERSION
 			);
 		} else {
 			wp_enqueue_script(
 				self::FRONTEND_HANDLE,
-				plugins_url( $this->plugin_name . '/dist/scripts/' . IMAGE_COMPARISON_FRONTEND_JS ),
+				plugins_url( $this->plugin_name . '/dist/scripts/' . BIGBITE_IMAGE_COMPARISON_FRONTEND_JS ),
 				[],
-				IMAGE_COMPARISON_VERSION,
+				BIGBITE_IMAGE_COMPARISON_VERSION,
 				true
 			);
 		}

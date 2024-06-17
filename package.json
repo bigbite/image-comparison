@@ -1,5 +1,5 @@
 {
-    "name": "@bigbite/image-comparison",
+    "name": "@bigbite/bigbite-image-comparison",
     "description": "Display two images in a comparison state.",
     "version": "0.0.1",
     "author": "Big Bite",
