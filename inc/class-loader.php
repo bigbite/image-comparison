@@ -78,14 +78,6 @@ final class Loader {
 	 * @return void
 	 */
 	public function enqueue_block_assets(): void {
-		wp_enqueue_script(
-			self::SHARED_HANDLE,
-			plugins_url( $this->plugin_name . '/dist/scripts/' . IMAGE_COMPARISON_SHARED_JS ),
-			[],
-			IMAGE_COMPARISON_VERSION,
-			false
-		);
-
 		wp_enqueue_style(
 			self::SHARED_HANDLE,
 			plugins_url( $this->plugin_name . '/dist/styles/' . IMAGE_COMPARISON_SHARED_CSS ),
