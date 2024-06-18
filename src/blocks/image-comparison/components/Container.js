@@ -10,7 +10,7 @@ import ContainerDivider from './ContainerDivider';
  * @param {object} props.children Children elements
  */
 const Container = ({ children }) => (
-  <div className="bigbite-image-comparison--container">
+  <div className="wp-block-bigbite-image-comparison__container">
     {children}
     <ContainerDivider />
   </div>

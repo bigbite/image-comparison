@@ -32,7 +32,7 @@ const Caption = ({ caption, setAttributes }) => {
       identifier={caption}
       tagName="figcaption"
       allowedFormats={allowedFormats}
-      className="bigbite-image-comparison--caption"
+      className="wp-block-bigbite-image-comparison__caption"
       onChange={(value) => setAttributes({ caption: value })}
       placeholder={__('Please enter a caption', 'bigbite-image-comparison')}
     />

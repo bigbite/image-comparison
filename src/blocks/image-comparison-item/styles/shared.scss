@@ -7,18 +7,16 @@
   margin: 0 !important;
   padding: 0 !important;
   line-height: 0 !important;
-
-  & + & {
-    top: 0;
-    left: 0;
-    padding: inherit;
-    position: absolute;
-    clip-path: inset(0 0 0 calc(var(--bigbite-image-comparison-divider-initial-position) * 1%));
-  }
 }
 
-.bigbite-image-comparison--divider--horizontal-axis {
-  .wp-block-bigbite-image-comparison-item + .wp-block-bigbite-image-comparison-item {
-    clip-path: inset(calc(var(--bigbite-image-comparison-divider-initial-position) * 1%) 0 0 0);
-  }
+.wp-block-bigbite-image-comparison-item + .wp-block-bigbite-image-comparison-item {
+  top: 0;
+  left: 0;
+  padding: inherit;
+  position: absolute;
+  clip-path: inset(0 0 0 calc(var(--bigbite-image-comparison-divider-initial-position) * 1%));
+}
+
+.wp-block-bigbite-image-comparison--horizontal .wp-block-bigbite-image-comparison-item + .wp-block-bigbite-image-comparison-item {
+  clip-path: inset(calc(var(--bigbite-image-comparison-divider-initial-position) * 1%) 0 0 0);
 }

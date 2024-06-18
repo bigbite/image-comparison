@@ -74,7 +74,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         : customCaptionBackgroundColour,
     },
     className: {
-      'bigbite-image-comparison--divider--horizontal-axis': dividerAxis === 'horizontal',
+      'wp-block-bigbite-image-comparison--horizontal': dividerAxis === 'horizontal',
     },
   });
 

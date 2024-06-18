@@ -21,7 +21,7 @@ $extra_styles  = [];
 
 // generate extra classes
 if ( 'horizontal' === $attributes['dividerAxis'] ) {
-	$extra_classes[] = 'bigbite-image-comparison--divider--horizontal-axis';
+	$extra_classes[] = 'wp-block-bigbite-image-comparison--horizontal';
 }
 
 // generate extra styles
@@ -102,9 +102,9 @@ $block_wrapper_attributes = get_block_wrapper_attributes(
 	<?php
 
 	printf(
-		'<div class="bigbite-image-comparison--container">
+		'<div class="wp-block-bigbite-image-comparison__container">
 			%s
-			<div class="bigbite-image-comparison--divider">
+			<div class="wp-block-bigbite-image-comparison__divider">
 				<button>
 					<span></span>
 					<span></span>
@@ -132,7 +132,7 @@ $block_wrapper_attributes = get_block_wrapper_attributes(
 
 	if ( $has_caption ) {
 		printf(
-			'<figcaption class="bigbite-image-comparison--caption">%s</figcaption>',
+			'<figcaption class="wp-block-bigbite-image-comparison__caption">%s</figcaption>',
 			wp_kses_post( trim( $attributes['caption'] ) )
 		);
 	}

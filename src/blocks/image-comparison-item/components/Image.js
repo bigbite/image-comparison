@@ -31,7 +31,7 @@ const Image = ({ blockProps, id, url, alternativeText, setAttributes }) => {
           onSelect={(media) => setAttributes({ id: media?.id, url: media?.url })}
           render={({ open }) => (
             <Flex
-              className="bigbite-image-comparison-item--uploader"
+              className="wp-block-bigbite-image-comparison-item__uploader"
               direction="column"
               justify="center"
             >

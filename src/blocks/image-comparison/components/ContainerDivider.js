@@ -7,7 +7,7 @@ import { __ } from '@wordpress/i18n';
  * Container divider
  */
 const ContainerDivider = () => (
-  <div className="bigbite-image-comparison--divider">
+  <div className="wp-block-bigbite-image-comparison__divider">
     <button type="button" aria-label={__('Divider Button', 'bigbite-image-comparison')}>
       <span />
       <span />

@@ -65,13 +65,15 @@ if (imageComparisons) {
    * Setup event listeners and selectors on each block
    */
   imageComparisons?.forEach((imageComparison) => {
-    const imageContainer = imageComparison.querySelector('.bigbite-image-comparison--container');
-    const divider = imageComparison.querySelector('.bigbite-image-comparison--divider');
+    const imageContainer = imageComparison.querySelector(
+      '.wp-block-bigbite-image-comparison__container',
+    );
+    const divider = imageComparison.querySelector('.wp-block-bigbite-image-comparison__divider');
     const secondaryImage = imageComparison.querySelector(
-      '.bigbite-image-comparison--container img:last-of-type',
+      '.wp-block-bigbite-image-comparison__container img:last-of-type',
     );
     const hasVerticalAxisDivider = imageContainer?.parentElement?.classList?.contains(
-      'bigbite-image-comparison--divider--horizontal-axis',
+      'wp-block-bigbite-image-comparison--horizontal',
     );
 
     imageContainer.addEventListener('pointerdown', activateIsPointerDownState);

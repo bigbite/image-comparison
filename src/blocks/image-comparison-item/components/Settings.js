@@ -23,7 +23,7 @@ const Settings = ({ attributes, setAttributes }) => (
     <InspectorControls>
       <PanelBody
         title={__('Settings', 'bigbite-image-comparison')}
-        className="bigbite-image-comparison-item--settings"
+        className="wp-block-bigbite-image-comparison-item__settings"
       >
         <PanelRow>
           <Image
