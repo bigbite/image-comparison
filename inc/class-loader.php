@@ -100,6 +100,13 @@ final class Loader {
 				BIGBITE_IMAGE_COMPARISON_VERSION,
 				true
 			);
+
+			wp_enqueue_style(
+				self::FRONTEND_HANDLE,
+				plugins_url( $this->plugin_name . '/dist/styles/' . BIGBITE_IMAGE_COMPARISON_FRONTEND_CSS ),
+				[],
+				BIGBITE_IMAGE_COMPARISON_VERSION
+			);
 		}
 	}
 }

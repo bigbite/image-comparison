@@ -3,7 +3,6 @@
 }
 
 .wp-block-bigbite-image-comparison__container {
-  cursor: col-resize;
   touch-action: none;
   border: 0 !important;
   padding: 0 !important;
@@ -65,10 +64,6 @@
     border-color: transparent transparent transparent
       var(--bigbite-image-comparison-divider-icon-colour);
   }
-}
-
-.wp-block-bigbite-image-comparison--horizontal .wp-block-bigbite-image-comparison__container {
-  cursor: row-resize;
 }
 
 .wp-block-bigbite-image-comparison--horizontal .wp-block-bigbite-image-comparison__divider {
