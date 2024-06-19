@@ -18,6 +18,13 @@ if (
 $has_caption   = $attributes['hasCaption'] && isset( $attributes['caption'] ) && '' !== trim( $attributes['caption'] );
 $extra_classes = [];
 $extra_styles  = [];
+$colours       = [
+	[ 'dividerColour', 'customDividerColour', 'divider-colour', true ],
+	[ 'dividerBoxColour', 'customDividerBoxColour', 'divider-box-colour', true ],
+	[ 'dividerIconColour', 'customDividerIconColour', 'divider-icon-colour', true ],
+	[ 'captionTextColour', 'customCaptionTextColour', 'caption-text-colour', $has_caption ],
+	[ 'captionBackgroundColour', 'customCaptionBackgroundColour', 'caption-background-colour', $has_caption ],
+];
 
 // generate extra classes
 if ( 'horizontal' === $attributes['dividerAxis'] ) {
@@ -33,61 +40,20 @@ $extra_styles[] = sprintf( '--bigbite-image-comparison-divider-box-height: %s;',
 $extra_styles[] = sprintf( '--bigbite-image-comparison-divider-box-border-radius: %s;', $attributes['dividerBoxBorderRadius']['top'] );
 $extra_styles[] = sprintf( '--bigbite-image-comparison-divider-icon-gap: %s;', $attributes['dividerIconGap'] );
 
-if ( ! empty( $attributes['dividerColour'] ) || ! empty( $attributes['customDividerColour'] ) ) {
-	$extra_styles[] = sprintf(
-		'--bigbite-image-comparison-divider-colour: %s;',
-		(
-			! empty( $attributes['dividerColour'] )
-				? sprintf( 'var(--wp--preset--color--%s, %s)', $attributes['dividerColour'], $attributes['customDividerColour'] )
-				: $attributes['customDividerColour']
-		)
-	);
-}
-
-if ( ! empty( $attributes['dividerBoxColour'] ) || ! empty( $attributes['customDividerBoxColour'] ) ) {
-	$extra_styles[] = sprintf(
-		'--bigbite-image-comparison-divider-box-colour: %s;',
-		(
-			! empty( $attributes['dividerBoxColour'] )
-				? sprintf( 'var(--wp--preset--color--%s, %s)', $attributes['dividerBoxColour'], $attributes['customDividerBoxColour'] )
-				: $attributes['customDividerBoxColour']
-		)
-	);
-}
-
-if ( ! empty( $attributes['dividerIconColour'] ) || ! empty( $attributes['customDividerIconColour'] ) ) {
-	$extra_styles[] = sprintf(
-		'--bigbite-image-comparison-divider-icon-colour: %s;',
-		(
-			! empty( $attributes['dividerIconColour'] )
-				? sprintf( 'var(--wp--preset--color--%s, %s)', $attributes['dividerIconColour'], $attributes['customDividerIconColour'] )
-				: $attributes['customDividerIconColour']
-		)
-	);
-}
-
-if ( $has_caption ) {
-	if ( ! empty( $attributes['captionTextColour'] ) || ! empty( $attributes['customCaptionTextColour'] ) ) {
-		$extra_styles[] = sprintf(
-			'--bigbite-image-comparison-caption-text-colour: %s;',
-			(
-				! empty( $attributes['captionTextColour'] )
-					? sprintf( 'var(--wp--preset--color--%s, %s)', $attributes['captionTextColour'], $attributes['customCaptionTextColour'] )
-					: $attributes['customCaptionTextColour']
-			)
-		);
+foreach ( $colours as $colour ) {
+	if ( ( empty( $attributes[ $colour[0] ] ) && empty( $attributes[ $colour[1] ] ) ) || ! $colour[3] ) {
+		continue;
 	}
 
-	if ( ! empty( $attributes['captionBackgroundColour'] ) || ! empty( $attributes['customCaptionBackgroundColour'] ) ) {
-		$extra_styles[] = sprintf(
-			'--bigbite-image-comparison-caption-background-colour: %s;',
-			(
-				! empty( $attributes['captionBackgroundColour'] )
-					? sprintf( 'var(--wp--preset--color--%s, %s)', $attributes['captionBackgroundColour'], $attributes['customCaptionBackgroundColour'] )
-					: $attributes['customCaptionBackgroundColour']
-			)
-		);
-	}
+	$extra_styles[] = sprintf(
+		'--bigbite-image-comparison-%s: %s;',
+		$colour[2],
+		(
+			! empty( $attributes[ $colour[0] ] )
+				? sprintf( 'var(--wp--preset--color--%s, %s)', $attributes[ $colour[0] ], $attributes[ $colour[1] ] )
+				: $attributes[ $colour[1] ]
+		)
+	);
 }
 
 $block_wrapper_attributes = get_block_wrapper_attributes(
