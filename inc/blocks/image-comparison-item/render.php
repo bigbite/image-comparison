@@ -29,7 +29,7 @@ if ( empty( $html ) ) {
 	return;
 }
 
-// process `img` html tag and add default core block class
+// initialise a WP_HTML_Tag_Processor class with image markup
 $processor = new WP_HTML_Tag_Processor( $html );
 
 // @phpstan-ignore-next-line -- `$query` parameter type of `string` is valid
