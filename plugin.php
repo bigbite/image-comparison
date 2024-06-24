@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BIGBITE_IMAGE_COMPARISON_PLUGIN_DIR', rtrim( plugin_dir_path( __FILE__ ), '/' ) );
+define( 'BIGBITE_IMAGE_COMPARISON_PLUGIN_DIR', __DIR__ );
 
 if ( file_exists( BIGBITE_IMAGE_COMPARISON_PLUGIN_DIR . '/inc/asset-settings.php' ) ) {
 	include_once BIGBITE_IMAGE_COMPARISON_PLUGIN_DIR . '/inc/asset-settings.php';
