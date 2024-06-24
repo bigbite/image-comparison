@@ -37,10 +37,11 @@ final class Loader {
 
 	/**
 	 * Initialise hooks and filters
+	 * 
+	 * @param string $plugin_directory Plugin directory
 	 */
-	public function __construct() {
-		// @phpstan-ignore-next-line -- avoid constant not found and bootstrap warning
-		$this->plugin_name = basename( BIGBITE_IMAGE_COMPARISON_PLUGIN_DIR );
+	public function __construct( $plugin_directory ) {
+		$this->plugin_name = basename( $plugin_directory );
 
 		add_action( 'init', [ $this, 'register_blocks' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
