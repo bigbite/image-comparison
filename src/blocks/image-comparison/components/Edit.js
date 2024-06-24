@@ -6,9 +6,9 @@ import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
 /**
  * Internal dependencies
  */
-import Caption from './components/Caption';
-import Settings from './components/Settings';
-import Container from './components/Container';
+import Caption from './Caption';
+import Settings from './Settings';
+import Container from './Container';
 
 /**
  * Block edit function
