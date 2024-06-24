@@ -3,9 +3,9 @@
  *
  * @type {NodeList}
  */
-const imageComparisons = document.querySelectorAll('.wp-block-bigbite-image-comparison');
+const imageComparisonBlocks = document.querySelectorAll('.wp-block-bigbite-image-comparison');
 
-if (imageComparisons) {
+if (imageComparisonBlocks?.length > 0) {
   /**
    * `pointerdown` event state
    *
@@ -28,57 +28,115 @@ if (imageComparisons) {
   };
 
   /**
-   * Calculate relative pointer position and update elements
+   * Controls the image comparison via pointer inputs
    *
-   * @param {object}  event                  pointermove event
-   * @param {element} divider                Divider element
-   * @param {element} secondaryImage         Secondary image element
-   * @param {bool}    hasVerticalAxisDivider Has vertical axis
+   * @param {object}  event                pointermove event
+   * @param {element} imageComparisonBlock Image comparison block element
    */
-  const updatePositions = (event, divider, secondaryImage, hasVerticalAxisDivider) => {
+  const pointerController = (event, imageComparisonBlock) => {
     // skip if `pointer` is not in a `pointerdown` state
     if (!isPointerDown) {
       return;
     }
 
-    const client = hasVerticalAxisDivider ? event?.clientY : event?.clientX;
+    const imageContainer = imageComparisonBlock.querySelector(
+      '.wp-block-bigbite-image-comparison__container',
+    );
+
+    const hasHorizontalAxisDivider = imageContainer?.parentElement?.classList?.contains(
+      'wp-block-bigbite-image-comparison--horizontal',
+    );
+
+    const client = hasHorizontalAxisDivider ? event?.clientY : event?.clientX;
     const targetDOMRect = event?.target?.getBoundingClientRect();
-    const targetPositionOffset = hasVerticalAxisDivider ? targetDOMRect?.y : targetDOMRect?.x;
-    const targetValue = hasVerticalAxisDivider ? targetDOMRect?.height : targetDOMRect?.width;
-    let position = client - targetPositionOffset;
+    const targetPositionOffset = hasHorizontalAxisDivider ? targetDOMRect?.y : targetDOMRect?.x;
+    let position =
+      ((client - targetPositionOffset) /
+        (hasHorizontalAxisDivider ? targetDOMRect?.height : targetDOMRect?.width)) *
+      100;
 
     if (position < 0) {
       position = 0;
-    } else if (position > targetValue) {
-      position = targetValue;
+    } else if (position > 100) {
+      position = 100;
     }
 
-    /* eslint-disable no-param-reassign -- assignments are to HTML DOM elements */
-    divider.style[hasVerticalAxisDivider ? 'top' : 'left'] = `${position}px`;
-    secondaryImage.style.clipPath = `inset(${
-      hasVerticalAxisDivider ? `${position}px 0 0 0` : `0 0 0 ${position}px`
-    }`;
-    /* eslint-enable */
+    imageComparisonBlock.style.setProperty(
+      '--bigbite-image-comparison-divider-initial-position',
+      position,
+    );
+  };
+
+  /**
+   * Controls the image comparison via keyboard inputs
+   *
+   * @param {object}  event                keydown event
+   * @param {element} imageComparisonBlock Image comparison block element
+   */
+  const keyboardController = (event, imageComparisonBlock) => {
+    const keyCode = event?.keyCode;
+    let position;
+
+    const imageContainer = imageComparisonBlock.querySelector(
+      '.wp-block-bigbite-image-comparison__container',
+    );
+
+    const hasHorizontalAxisDivider = imageContainer?.parentElement?.classList?.contains(
+      'wp-block-bigbite-image-comparison--horizontal',
+    );
+
+    const allowedKeycodes = hasHorizontalAxisDivider ? [38, 40] : [37, 39];
+
+    if (!allowedKeycodes.includes(keyCode)) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const currentPosition = parseInt(
+      imageComparisonBlock.style.getPropertyValue(
+        '--bigbite-image-comparison-divider-initial-position',
+      ),
+      10,
+    );
+
+    if (allowedKeycodes.indexOf(keyCode) === 0) {
+      position = currentPosition - 10;
+    } else {
+      position = currentPosition + 10;
+    }
+
+    if (position < 0) {
+      position = 0;
+    } else if (position > 100) {
+      position = 100;
+    }
+
+    imageComparisonBlock.style.setProperty(
+      '--bigbite-image-comparison-divider-initial-position',
+      position,
+    );
   };
 
   /**
    * Setup event listeners and selectors on each block
    */
-  imageComparisons?.forEach((imageComparison) => {
-    const imageContainer = imageComparison.querySelector(
+  imageComparisonBlocks?.forEach((imageComparisonBlock) => {
+    const imageContainer = imageComparisonBlock.querySelector(
       '.wp-block-bigbite-image-comparison__container',
     );
-    const divider = imageComparison.querySelector('.wp-block-bigbite-image-comparison__divider');
-    const secondaryImage = imageComparison.querySelector(
-      '.wp-block-bigbite-image-comparison__container img:last-of-type',
-    );
-    const hasVerticalAxisDivider = imageContainer?.parentElement?.classList?.contains(
-      'wp-block-bigbite-image-comparison--horizontal',
+
+    const dividerButton = imageComparisonBlock.querySelector(
+      '.wp-block-bigbite-image-comparison__divider button',
     );
 
     imageContainer.addEventListener('pointerdown', activateIsPointerDownState);
     imageContainer.addEventListener('pointermove', (event) =>
-      updatePositions(event, divider, secondaryImage, hasVerticalAxisDivider),
+      pointerController(event, imageComparisonBlock),
+    );
+
+    dividerButton.addEventListener('keydown', (event) =>
+      keyboardController(event, imageComparisonBlock),
     );
   });
 
