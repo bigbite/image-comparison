@@ -18,7 +18,18 @@ if (
 $has_caption   = $attributes['hasCaption'] && isset( $attributes['caption'] ) && '' !== trim( $attributes['caption'] );
 $extra_classes = [];
 $extra_styles  = [];
-$colours       = [
+
+/*
+ * An array used to generate inline colour css variables, each
+ * sub array should consist of 4 entries and follow the
+ * below key / value structure.
+ * 
+ * [0] {string}  Colour attribute name
+ * [1] {string}  Custom colour attribute name
+ * [2] {string}  CSS variable name suffix
+ * [3] {boolean} Whether the corresponding variable should be rendered
+ */
+$colours = [
 	[ 'dividerColour', 'customDividerColour', 'divider-colour', true ],
 	[ 'dividerBoxColour', 'customDividerBoxColour', 'divider-box-colour', true ],
 	[ 'dividerIconColour', 'customDividerIconColour', 'divider-icon-colour', true ],
