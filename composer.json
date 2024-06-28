@@ -1,0 +1,20 @@
+{
+	"name": "bigbite/image-comparison",
+	"description": "Display two images in a comparison state.",
+	"type": "wordpress-plugin",
+	"config": {
+		"preferred-install": "dist",
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"require-dev": {
+		"bigbite/phpcs-config": "^2.0",
+		"phpstan/phpstan": "^1.10",
+		"szepeviktor/phpstan-wordpress": "^1.3"
+	},
+	"scripts": {
+		"phpcs": "./vendor/bin/phpcs .",
+		"phpstan": "@php ./vendor/bin/phpstan --memory-limit=512M"
+	}
+}

@@ -1,0 +1,29 @@
+version: 2.1
+
+orbs:
+  project: bigbite/project@1.2.1
+
+jobs:
+  build:
+    executor:
+      name: project/default
+      php: '8.2'
+    steps:
+      - checkout
+      - project/setup
+      - project/composer-install
+      - project/phpcs
+      - project/npm-install
+      - project/npm-build
+      - project/phpstan:
+          memory_limit: '512M'
+      - project/create-build
+
+workflows:
+  workflow:
+    jobs:
+      - build:
+          context: bigbite
+          filters:
+            branches:
+              ignore: /^.*-built$/

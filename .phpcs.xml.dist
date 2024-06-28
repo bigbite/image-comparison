@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<ruleset name="Big Bite Image Comparison Rules">
+  <rule ref="./vendor/bigbite/phpcs-config/BigBite" />
+</ruleset>

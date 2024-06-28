@@ -1,0 +1,96 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "bigbite/image-comparison",
+    "title": "Image Comparison",
+    "version": "0.0.1",
+    "icon": "format-gallery",
+    "description": "Display two images in a comparison state.",
+    "attributes": {
+        "overflow": {
+            "type": "boolean",
+            "default": true
+        },
+        "hasCaption": {
+            "type": "boolean",
+            "default": false
+        },
+        "caption": {
+            "type": "string"
+        },
+        "captionTextColour": {
+            "type": "string"
+        },
+        "customCaptionTextColour": {
+            "type": "string"
+        },
+        "captionBackgroundColour": {
+            "type": "string"
+        },
+        "customCaptionBackgroundColour": {
+            "type": "string"
+        },
+        "dividerInitialPosition": {
+            "type": "number",
+            "default": 50
+        },
+        "dividerAxis": {
+            "type": "string",
+            "enum": [ "vertical", "horizontal"],
+            "default": "vertical"
+        },
+        "dividerThickness": {
+            "type": "number",
+            "default": 2
+        },
+        "dividerColour": {
+            "type": "string"
+        },
+        "customDividerColour": {
+            "type": "string",
+            "default": "#000000"
+        },
+        "dividerBoxColour": {
+            "type": "string"
+        },
+        "customDividerBoxColour": {
+            "type": "string",
+            "default": "#ffffff"
+        },
+        "dividerBoxWidth": {
+            "type": "number",
+            "default": 32
+        },
+        "dividerBoxHeight": {
+            "type": "number",
+            "default": 32
+        },
+        "dividerBoxBorderRadius": {
+            "type": "object",
+            "default": {
+                "top": 0,
+                "right": 0,
+                "bottom": 0,
+                "left": 0
+            }
+        },
+        "dividerIconColour": {
+            "type": "string"
+        },
+        "customDividerIconColour": {
+            "type": "string",
+            "default": "#000000"
+        },
+        "dividerIconGap": {
+            "type": "number",
+            "default": 2
+        }
+    },
+    "supports": {
+        "anchor": true,
+        "align": true,
+        "html": false
+    },
+    "textdomain": "bigbite-image-comparison",
+    "render": "file:./render.php"
+}

@@ -1,0 +1,23 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "bigbite/image-comparison-item",
+    "title": "Image Comparison Item",
+    "version": "0.0.1",
+    "icon": "format-image",
+    "description": "Image item used exclusively within the Big Bite Image Comparison block.",
+    "attributes": {
+        "id": {
+            "type": "integer"
+        },
+        "url": {
+            "type": "string"
+        },
+        "alternativeText": {
+            "type": "string"
+        }
+    },
+    "parent": [ "bigbite/image-comparison" ],
+    "textdomain": "bigbite-image-comparison",
+    "render": "file:./render.php"
+}
