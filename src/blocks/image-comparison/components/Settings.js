@@ -23,6 +23,7 @@ import SettingsDividerBoxHeight from './SettingsDividerBoxHeight';
 import SettingsDividerThickness from './SettingsDividerThickness';
 import SettingsDividerInitialPosition from './SettingsDividerInitialPosition';
 import SettingsDividerBoxBorderRadius from './SettingsDividerBoxBorderRadius';
+import SettingsContainerSize from './SettingsContainerSize';
 
 /**
  * Renders block inspector controls sidebar
@@ -54,6 +55,8 @@ const Settings = ({
     hasCaption,
     customCaptionTextColour,
     customCaptionBackgroundColour,
+    containerHeight,
+    containerWidth,
   },
   setAttributes,
   clientId,
@@ -151,6 +154,11 @@ const Settings = ({
         <PanelBody title={__('Settings', 'bigbite-image-comparison')}>
           <SettingsOverflow overflow={overflow} setAttributes={setAttributes} />
           <SettingsCaption hasCaption={hasCaption} setAttributes={setAttributes} />
+          <SettingsContainerSize
+            containerBoxHeight={containerHeight}
+            containerBoxWidth={containerWidth}
+            setAttributes={setAttributes}
+          />
           <SettingsDividerInitialPosition
             setAttributes={setAttributes}
             dividerInitialPosition={dividerInitialPosition}

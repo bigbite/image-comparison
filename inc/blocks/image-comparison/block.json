@@ -84,6 +84,14 @@
         "dividerIconGap": {
             "type": "number",
             "default": 2
+        },
+        "containerHeight": {
+            "type": "number",
+            "default": 500
+        },
+        "containerWidth": {
+            "type": "number",
+            "default": 1200
         }
     },
     "supports": {

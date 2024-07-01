@@ -1,6 +1,7 @@
 /**
  * External dependencies
  */
+import { ResizableBox } from '@wordpress/components';
 import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
 
 /**
@@ -40,6 +41,8 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     customCaptionTextColour,
     captionBackgroundColour,
     customCaptionBackgroundColour,
+    containerHeight,
+    containerWidth,
   } = attributes;
 
   const innerBlockSettings = {
@@ -80,13 +83,54 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 
   const { children, ...innerBlocksProps } = useInnerBlocksProps(blockProps, innerBlockSettings);
 
+  /**
+   * Handle the container resize
+   *
+   * @param object delta - The delta object with the height and width changes
+   */
+  const handleContainerResize = (event, direction, elt, delta) => {
+    setAttributes({
+      containerHeight: Number(containerHeight) + delta.height,
+      containerWidth: Number(containerWidth) + delta.width,
+    });
+  };
+
+  /**
+   * TODO - If images are found, allow resize. If no images, do not allow resize.
+   */
+  const canResize = true;
+
   return (
     <>
       <Settings attributes={attributes} setAttributes={setAttributes} clientId={clientId} />
       {/* eslint-disable-next-line react/jsx-props-no-spreading -- recommended usage of innerBlockProps */}
       <figure {...innerBlocksProps}>
-        <Container>{children}</Container>
-        {hasCaption && <Caption caption={caption} setAttributes={setAttributes} />}
+        <ResizableBox
+          showHandle
+          enable={{
+            bottom: canResize,
+            bottomLeft: false,
+            bottomRight: canResize,
+            left: false,
+            right: canResize,
+            top: false,
+            topLeft: false,
+            topRight: false,
+          }}
+          size={{
+            height: containerHeight,
+            width: containerWidth,
+          }}
+          minHeight="150"
+          minWidth="150"
+          maxWidth="100%"
+          onResizeStop={(event, direction, elt, delta) =>
+            handleContainerResize(event, direction, elt, delta)
+          }
+        >
+          <Container>{children}</Container>
+          {hasCaption && <Caption caption={caption} setAttributes={setAttributes} />}
+        </ResizableBox>
       </figure>
     </>
   );

@@ -3,12 +3,14 @@
 }
 
 .wp-block-bigbite-image-comparison__container {
+  height: 100%;
   touch-action: none;
   border: 0 !important;
   padding: 0 !important;
   line-height: 0 !important;
   position: relative !important;
   overflow: var(--bigbite-image-comparison-overflow);
+  
 }
 
 .wp-block-bigbite-image-comparison__container * {

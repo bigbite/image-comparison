@@ -50,6 +50,8 @@ $extra_styles[] = sprintf( '--bigbite-image-comparison-divider-box-width: %s;', 
 $extra_styles[] = sprintf( '--bigbite-image-comparison-divider-box-height: %s;', $attributes['dividerBoxHeight'] );
 $extra_styles[] = sprintf( '--bigbite-image-comparison-divider-box-border-radius: %s;', $attributes['dividerBoxBorderRadius']['top'] );
 $extra_styles[] = sprintf( '--bigbite-image-comparison-divider-icon-gap: %s;', $attributes['dividerIconGap'] );
+$extra_styles[] = sprintf( '--bigbite-image-comparison-container-height: %spx;', $attributes['containerHeight'] );
+$extra_styles[] = sprintf( '--bigbite-image-comparison-container-width: %spx;', $attributes['containerWidth'] );
 
 foreach ( $colours as $colour ) {
 	if ( ( empty( $attributes[ $colour[0] ] ) && empty( $attributes[ $colour[1] ] ) ) || ! $colour[3] ) {
