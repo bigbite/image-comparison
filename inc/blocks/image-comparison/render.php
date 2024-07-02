@@ -15,7 +15,7 @@ if (
 	return;
 }
 
-$has_caption   = $attributes['hasCaption'] && isset( $attributes['caption'] ) && '' !== trim( $attributes['caption'] );
+$has_caption   = isset( $attributes['caption'] ) && '' !== trim( $attributes['caption'] );
 $extra_classes = [];
 $extra_styles  = [];
 
@@ -82,7 +82,7 @@ $block_wrapper_attributes = get_block_wrapper_attributes(
 		'<div class="wp-block-bigbite-image-comparison__container">
 			%s
 			<div class="wp-block-bigbite-image-comparison__divider">
-				<button>
+				<button aria-label="%s">
 					<span></span>
 					<span></span>
 				</button>
@@ -105,6 +105,7 @@ $block_wrapper_attributes = get_block_wrapper_attributes(
 				],
 			]
 		),
+		esc_html__( 'Drag left and right, or up and down, to compare two images', 'bigbite' )
 	);
 
 	if ( $has_caption ) {
