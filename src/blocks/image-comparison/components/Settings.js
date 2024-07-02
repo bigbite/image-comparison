@@ -58,6 +58,7 @@ const Settings = ({
     containerHeight,
     containerWidth,
   },
+  shouldDisplayResize,
   setAttributes,
   clientId,
   dividerColour,
@@ -154,11 +155,13 @@ const Settings = ({
         <PanelBody title={__('Settings', 'bigbite-image-comparison')}>
           <SettingsOverflow overflow={overflow} setAttributes={setAttributes} />
           <SettingsCaption hasCaption={hasCaption} setAttributes={setAttributes} />
-          <SettingsContainerSize
-            containerBoxHeight={containerHeight}
-            containerBoxWidth={containerWidth}
-            setAttributes={setAttributes}
-          />
+          {shouldDisplayResize ? (
+            <SettingsContainerSize
+              containerBoxHeight={containerHeight}
+              containerBoxWidth={containerWidth}
+              setAttributes={setAttributes}
+            />
+          ) : null}
           <SettingsDividerInitialPosition
             setAttributes={setAttributes}
             dividerInitialPosition={dividerInitialPosition}

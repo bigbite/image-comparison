@@ -51,6 +51,40 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     orientation: dividerAxis === 'horizontal' ? 'vertical' : 'horizontal',
   };
 
+  /**
+   * Initially set the resize handles to be hidden
+   */
+  let shouldDisplayResize = false;
+
+  /**
+   * Retrieve the inner blocks
+   */
+  const [{ innerBlocks }] = wp.data.select('core/block-editor').getBlocksByClientId(clientId);
+
+  /**
+   * Determine whether to allow the resize handles to be
+   * displayed based on if an image is assigned or not
+   */
+  innerBlocks.forEach((block) => {
+    if (block.attributes && block.attributes.id) {
+      shouldDisplayResize = true;
+    }
+  });
+
+  /**
+   * Only ever display the right, bottom, and bottomRight handles
+   */
+  const resizeDirectionSettings = {
+    bottom: shouldDisplayResize,
+    bottomLeft: false,
+    bottomRight: shouldDisplayResize,
+    right: shouldDisplayResize,
+    left: false,
+    top: false,
+    topLeft: false,
+    topRight: false,
+  };
+
   const blockProps = useBlockProps({
     style: {
       '--bigbite-image-comparison-overflow': overflow ? 'visible' : 'hidden',
@@ -75,8 +109,8 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
       '--bigbite-image-comparison-caption-background-colour': captionBackgroundColour
         ? `var( --wp--preset--color--${captionBackgroundColour}, ${customCaptionBackgroundColour} )`
         : customCaptionBackgroundColour,
-      '--bigbite-image-comparison-container-height': `${containerHeight}px`,
-      '--bigbite-image-comparison-container-width': `${containerWidth}px`,
+      '--bigbite-image-comparison-container-height': containerHeight,
+      '--bigbite-image-comparison-container-width': containerWidth,
     },
     className: {
       'wp-block-bigbite-image-comparison--horizontal': dividerAxis === 'horizontal',
@@ -85,15 +119,38 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 
   const { children, ...innerBlocksProps } = useInnerBlocksProps(blockProps, innerBlockSettings);
 
-  const resizeDirectionSettings = {
-    bottom: true,
-    bottomLeft: false,
-    bottomRight: true,
-    right: true,
-    left: false,
-    top: false,
-    topLeft: false,
-    topRight: false,
+  /**
+   * Function to update the value whilst retaining the measurement unit
+   *
+   * @param string  measurement  The current height / width
+   * @param number  delta        Value to update the height / width by
+   *
+   * @return string
+   */
+  const updateMeasurement = (measurement, delta) => {
+    /**
+     * Regex to separate digits and unit
+     */
+    const regex = /(\d+)(.+)/;
+    const parts = measurement.match(regex);
+    if (parts) {
+      /**
+       * Define the numerical value
+       */
+      const value = parseInt(parts[1], 10);
+      /**
+       * Define the unit of measurement
+       */
+      const unit = parts[2];
+      /**
+       * Make the calculation and return the updated value with the measurement unit
+       */
+      return `${value + delta}${unit}`;
+    }
+    /**
+     * Return the original value if no match is found
+     */
+    return measurement;
   };
 
   /**
@@ -101,16 +158,23 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
    *
    * @param object delta - The delta object with the height and width changes
    */
-  const handleContainerResize = (event, direction, elt, delta) => {
+  const handleContainerResize = (delta) => {
+    const updatedHeight = updateMeasurement(containerHeight, delta.height);
+    const updatedWidth = updateMeasurement(containerWidth, delta.width);
     setAttributes({
-      containerHeight: Number(containerHeight) + delta.height,
-      containerWidth: Number(containerWidth) + delta.width,
+      containerHeight: updatedHeight,
+      containerWidth: updatedWidth,
     });
   };
 
   return (
     <>
-      <Settings attributes={attributes} setAttributes={setAttributes} clientId={clientId} />
+      <Settings
+        attributes={attributes}
+        shouldDisplayResize={shouldDisplayResize}
+        setAttributes={setAttributes}
+        clientId={clientId}
+      />
       {/* eslint-disable-next-line react/jsx-props-no-spreading -- recommended usage of innerBlockProps */}
       <figure {...innerBlocksProps}>
         <ResizableBox
@@ -122,9 +186,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
           }}
           minHeight="150"
           minWidth="150"
-          onResizeStop={(event, direction, elt, delta) =>
-            handleContainerResize(event, direction, elt, delta)
-          }
+          onResizeStop={(event, direction, elt, delta) => handleContainerResize(delta)}
         >
           <Container>{children}</Container>
         </ResizableBox>
