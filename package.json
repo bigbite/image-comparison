@@ -1,7 +1,7 @@
 {
     "name": "@bigbite/bigbite-image-comparison",
     "description": "Display two images in a comparison state.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "author": "Big Bite",
     "prettier": "@bigbite/build-tools/configs/prettier",
     "scripts": {
