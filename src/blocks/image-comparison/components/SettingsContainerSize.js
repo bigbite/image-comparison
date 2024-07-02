@@ -1,4 +1,7 @@
-import { TextControl } from '@wordpress/components';
+import {
+  __experimentalGrid as Grid,
+  __experimentalUnitControl as UnitControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -8,26 +11,32 @@ import { __ } from '@wordpress/i18n';
  * @param {number}   props.containerWidth   Container width
  * @param {function} props.setAttributes    Update block attributes
  */
-const SettingsContainerSize = ({ containerBoxHeight, containerBoxWidth, setAttributes }) => (
-  <>
-    <TextControl
-      type="number"
-      value={containerBoxHeight}
-      onChange={(newHeight) => setAttributes({ containerHeight: newHeight })}
-      label={__('Container Height', 'bigbite-image-comparison')}
-      help={__('Set the height of the container box.', 'bigbite-image-comparison')}
-    />
-    <TextControl
-      type="number"
-      value={containerBoxWidth}
-      onChange={(newWidth) => setAttributes({ containerWidth: newWidth })}
-      label={__('Container Width', 'bigbite-image-comparison')}
-      help={__(
-        'Set the width of the container box. Can not be wider than the parent width.',
-        'bigbite-image-comparison',
-      )}
-    />
-  </>
-);
+const SettingsContainerSize = ({ containerBoxHeight, containerBoxWidth, setAttributes }) => {
+  const availableUnits = [
+    {
+      a11yLabel: 'Pixels (px)',
+      label: 'px',
+      step: 1,
+      value: 'px',
+    },
+  ];
+
+  return (
+    <Grid columns={2} gap={2}>
+      <UnitControl
+        label={__('Width', 'bigbite-image-comparison')}
+        onChange={(newWidth) => setAttributes({ containerWidth: newWidth })}
+        value={containerBoxWidth}
+        units={availableUnits}
+      />
+      <UnitControl
+        label={__('Height', 'bigbite-image-comparison')}
+        onChange={(newHeight) => setAttributes({ containerHeight: newHeight })}
+        value={containerBoxHeight}
+        units={availableUnits}
+      />
+    </Grid>
+  );
+};
 
 export default SettingsContainerSize;
