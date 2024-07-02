@@ -91,7 +91,7 @@
         },
         "containerWidth": {
             "type": "number",
-            "default": 1200
+            "default": 500
         }
     },
     "supports": {

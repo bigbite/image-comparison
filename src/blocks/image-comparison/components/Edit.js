@@ -75,6 +75,8 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
       '--bigbite-image-comparison-caption-background-colour': captionBackgroundColour
         ? `var( --wp--preset--color--${captionBackgroundColour}, ${customCaptionBackgroundColour} )`
         : customCaptionBackgroundColour,
+      '--bigbite-image-comparison-container-height': `${containerHeight}px`,
+      '--bigbite-image-comparison-container-width': `${containerWidth}px`,
     },
     className: {
       'wp-block-bigbite-image-comparison--horizontal': dividerAxis === 'horizontal',
@@ -82,6 +84,17 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
   });
 
   const { children, ...innerBlocksProps } = useInnerBlocksProps(blockProps, innerBlockSettings);
+
+  const resizeDirectionSettings = {
+    bottom: true,
+    bottomLeft: false,
+    bottomRight: true,
+    right: true,
+    left: false,
+    top: false,
+    topLeft: false,
+    topRight: false,
+  };
 
   /**
    * Handle the container resize
@@ -95,11 +108,6 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     });
   };
 
-  /**
-   * TODO - If images are found, allow resize. If no images, do not allow resize.
-   */
-  const canResize = true;
-
   return (
     <>
       <Settings attributes={attributes} setAttributes={setAttributes} clientId={clientId} />
@@ -107,30 +115,20 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
       <figure {...innerBlocksProps}>
         <ResizableBox
           showHandle
-          enable={{
-            bottom: canResize,
-            bottomLeft: false,
-            bottomRight: canResize,
-            left: false,
-            right: canResize,
-            top: false,
-            topLeft: false,
-            topRight: false,
-          }}
+          enable={resizeDirectionSettings}
           size={{
             height: containerHeight,
             width: containerWidth,
           }}
           minHeight="150"
           minWidth="150"
-          maxWidth="100%"
           onResizeStop={(event, direction, elt, delta) =>
             handleContainerResize(event, direction, elt, delta)
           }
         >
           <Container>{children}</Container>
-          {hasCaption && <Caption caption={caption} setAttributes={setAttributes} />}
         </ResizableBox>
+        {hasCaption && <Caption caption={caption} setAttributes={setAttributes} />}
       </figure>
     </>
   );

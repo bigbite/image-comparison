@@ -17,13 +17,13 @@ import {
 import SettingsCaption from './SettingsCaption';
 import SettingsOverflow from './SettingsOverflow';
 import SettingsDividerAxis from './SettingsDividerAxis';
+import SettingsContainerSize from './SettingsContainerSize';
 import SettingsDividerIconGap from './SettingsDividerIconGap';
 import SettingsDividerBoxWidth from './SettingsDividerBoxWidth';
 import SettingsDividerBoxHeight from './SettingsDividerBoxHeight';
 import SettingsDividerThickness from './SettingsDividerThickness';
 import SettingsDividerInitialPosition from './SettingsDividerInitialPosition';
 import SettingsDividerBoxBorderRadius from './SettingsDividerBoxBorderRadius';
-import SettingsContainerSize from './SettingsContainerSize';
 
 /**
  * Renders block inspector controls sidebar
