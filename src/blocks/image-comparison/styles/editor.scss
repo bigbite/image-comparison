@@ -5,3 +5,8 @@
 .wp-block-bigbite-image-comparison__divider {
   pointer-events: auto;
 }
+
+.components-panel .wp-block-bigbite-image-comparison-item__settings img {
+  height: auto;
+  max-width: 100%;
+}
