@@ -34,7 +34,6 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     dividerIconColour,
     customDividerIconColour,
     dividerIconGap,
-    hasCaption,
     caption,
     captionTextColour,
     customCaptionTextColour,
@@ -86,7 +85,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
       {/* eslint-disable-next-line react/jsx-props-no-spreading -- recommended usage of innerBlockProps */}
       <figure {...innerBlocksProps}>
         <Container>{children}</Container>
-        {hasCaption && <Caption caption={caption} setAttributes={setAttributes} />}
+        <Caption caption={caption} setAttributes={setAttributes} />
       </figure>
     </>
   );
