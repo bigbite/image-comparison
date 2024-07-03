@@ -15,7 +15,7 @@ if (
 	return;
 }
 
-$has_caption   = isset( $attributes['caption'] ) && '' !== trim( $attributes['caption'] );
+$has_caption   = ! empty( $attributes['caption'] );
 $extra_classes = [];
 $extra_styles  = [];
 
