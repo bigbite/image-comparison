@@ -18,6 +18,8 @@ if (
 $has_caption   = ! empty( $attributes['caption'] );
 $extra_classes = [];
 $extra_styles  = [];
+// Default the divider drag direction string to left and right (vertical dividerAxis)
+$divider_drag_direction = __( 'left and right', 'bigbite-image-comparison' );
 
 /*
  * An array used to generate inline colour css variables, each
@@ -37,9 +39,11 @@ $colours = [
 	[ 'captionBackgroundColour', 'customCaptionBackgroundColour', 'caption-background-colour', $has_caption ],
 ];
 
-// generate extra classes
+// generate extra classes and update divider drag direction string
 if ( 'horizontal' === $attributes['dividerAxis'] ) {
 	$extra_classes[] = 'wp-block-bigbite-image-comparison--horizontal';
+	// Update divider drag direction string to up and down (horizontal dividerAxis)
+	$divider_drag_direction = __( 'up and down', 'bigbite-image-comparison' );
 }
 
 // generate extra styles
@@ -105,7 +109,13 @@ $block_wrapper_attributes = get_block_wrapper_attributes(
 				],
 			]
 		),
-		esc_html__( 'Drag left and right, or up and down, to compare two images', 'bigbite' )
+		esc_html(
+			sprintf(
+				/* translators: %s: direction of movement defined using dividerAxis */
+				__( 'Drag this divider %s to compare two images', 'bigbite-image-comparison' ),
+				$divider_drag_direction
+			)
+		)
 	);
 
 	if ( $has_caption ) {
