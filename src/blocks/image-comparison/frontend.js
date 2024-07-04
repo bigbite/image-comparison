@@ -149,6 +149,9 @@ if (imageComparisonBlocks?.length > 0) {
     imageContainer.addEventListener('pointermove', (event) =>
       pointerController(event, imageComparisonBlock),
     );
+    imageContainer.addEventListener('pointerleave', (event) =>
+      pointerController(event, imageComparisonBlock),
+    );
 
     dividerButton.addEventListener('keydown', (event) =>
       keyboardController(event, imageComparisonBlock),
