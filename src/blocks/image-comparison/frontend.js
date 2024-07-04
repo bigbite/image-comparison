@@ -29,9 +29,9 @@ if (imageComparisonBlocks?.length > 0) {
     /**
      * Array of allowed mouse buttons
      *
-     * 0 = left click
+     * 0 = primary click
      * 1 = middle click
-     * 2 = right click
+     * 2 = secondary click
      * 3 = back button
      * 4 = forward button
      */
