@@ -22,9 +22,24 @@ if (imageComparisonBlocks?.length > 0) {
 
   /**
    * Activate `pointerdown` cached state
+   *
+   * @param {object} event pointerdown event
    */
-  const activateIsPointerDownState = () => {
-    isPointerDown = true;
+  const activateIsPointerDownState = (event) => {
+    /**
+     * Array of allowed mouse buttons
+     *
+     * 0 = left click
+     * 1 = middle click
+     * 2 = right click
+     * 3 = back button
+     * 4 = forward button
+     */
+    const allowedMouseButtons = [0];
+    const clickedMouseButton = event?.button;
+    if (allowedMouseButtons.includes(clickedMouseButton)) {
+      isPointerDown = true;
+    }
   };
 
   /**
@@ -130,7 +145,7 @@ if (imageComparisonBlocks?.length > 0) {
       '.wp-block-bigbite-image-comparison__divider button',
     );
 
-    imageContainer.addEventListener('pointerdown', activateIsPointerDownState);
+    imageContainer.addEventListener('pointerdown', (event) => activateIsPointerDownState(event));
     imageContainer.addEventListener('pointermove', (event) =>
       pointerController(event, imageComparisonBlock),
     );
