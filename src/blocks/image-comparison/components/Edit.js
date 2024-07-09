@@ -2,7 +2,8 @@
  * External dependencies
  */
 import { ResizableBox } from '@wordpress/components';
-import { useInnerBlocksProps, useBlockProps } from '@wordpress/block-editor';
+import { useInnerBlocksProps, useBlockProps, useSettings } from '@wordpress/block-editor';
+import { useEffect } from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -20,6 +21,11 @@ import Container from './Container';
  * @param {string}   props.clientId      Block client ID
  */
 const Edit = ({ attributes, setAttributes, clientId }) => {
+  /**
+   * Set contentWidth based on the layout.contentSize setting
+   */
+  const [contentWidth] = useSettings('layout.contentSize');
+
   const {
     overflow,
     dividerInitialPosition,
@@ -55,6 +61,17 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
    * Initially set the resize handles to be hidden
    */
   let shouldDisplayResize = false;
+
+  /**
+   * Overwrite the default size of the block with the theme's
+   * defined contentSize, if it exists. This should only be
+   * applied if no images have been added to the block.
+   */
+  useEffect(() => {
+    if (!shouldDisplayResize) {
+      setAttributes({ containerWidth: contentWidth });
+    }
+  }, [contentWidth]);
 
   /**
    * Retrieve the inner blocks
