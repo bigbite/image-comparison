@@ -78,6 +78,22 @@ $block_wrapper_attributes = get_block_wrapper_attributes(
 	]
 );
 
+/**
+ * When a caption is present, generate an ID to link the caption to the figure element.
+ */
+if ( $has_caption ) {
+
+	/**
+	 * Generate a unique ID for the figure element if a caption is present.
+	 */
+	$unique_id = esc_html__( 'fig-', 'bigbite-image-comparison' ) . wp_generate_password( special_chars: false );
+
+	/**
+	 * Add the aria role to the $block_wrapper_attributes string
+	 */
+	$block_wrapper_attributes .= ' aria-labelledby="' . $unique_id . '"';
+}
+
 ?>
 <figure <?php echo wp_kses_data( $block_wrapper_attributes ); ?>>
 	<?php
@@ -120,7 +136,8 @@ $block_wrapper_attributes = get_block_wrapper_attributes(
 
 	if ( $has_caption ) {
 		printf(
-			'<figcaption class="wp-block-bigbite-image-comparison__caption">%s</figcaption>',
+			'<figcaption class="wp-block-bigbite-image-comparison__caption" id="%s">%s</figcaption>',
+			esc_attr( $unique_id ),
 			wp_kses_post( trim( $attributes['caption'] ) )
 		);
 	}
