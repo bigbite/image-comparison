@@ -66,7 +66,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
    * displayed based on if an image is assigned or not
    */
   innerBlocks.forEach((block) => {
-    if (block.attributes && block.attributes.id) {
+    if (block?.attributes?.id) {
       shouldDisplayResize = true;
     }
   });
