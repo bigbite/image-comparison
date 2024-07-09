@@ -14,7 +14,7 @@ import { __ } from '@wordpress/i18n';
 const SettingsContainerSize = ({ containerBoxHeight, containerBoxWidth, setAttributes }) => {
   const availableUnits = [
     {
-      a11yLabel: 'Pixels (px)',
+      a11yLabel: __('Pixels (px)', 'bigbite-image-comparison'),
       label: 'px',
       step: 1,
       value: 'px',
