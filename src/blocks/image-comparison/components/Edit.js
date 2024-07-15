@@ -77,7 +77,18 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     },
   });
 
+  const uniqueId = `fig-${clientId}`;
+
   const { children, ...innerBlocksProps } = useInnerBlocksProps(blockProps, innerBlockSettings);
+
+  /**
+   * If the caption exists, include the aria-labelledby attribute to block props
+   *
+   * This will supersede the default aria-label attribute
+   */
+  if (caption) {
+    innerBlocksProps['aria-labelledby'] = uniqueId;
+  }
 
   return (
     <>
@@ -85,7 +96,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
       {/* eslint-disable-next-line react/jsx-props-no-spreading -- recommended usage of innerBlockProps */}
       <figure {...innerBlocksProps}>
         <Container>{children}</Container>
-        <Caption caption={caption} setAttributes={setAttributes} />
+        <Caption caption={caption} setAttributes={setAttributes} uniqueId={uniqueId} />
       </figure>
     </>
   );
