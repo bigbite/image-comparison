@@ -86,7 +86,7 @@ if ( $has_caption ) {
 	/**
 	 * Generate a unique ID for the figure element if a caption is present.
 	 */
-	$unique_id = esc_html__( 'fig-', 'bigbite-image-comparison' ) . wp_generate_password( special_chars: false );
+	$unique_id = 'fig-' . wp_generate_password( special_chars: false );
 
 	/**
 	 * Add the aria role to the $block_wrapper_attributes string
