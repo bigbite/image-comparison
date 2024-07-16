@@ -15,9 +15,11 @@ if (
 	return;
 }
 
-$has_caption   = $attributes['hasCaption'] && isset( $attributes['caption'] ) && '' !== trim( $attributes['caption'] );
+$has_caption   = ! empty( $attributes['caption'] );
 $extra_classes = [];
 $extra_styles  = [];
+// Default the divider drag direction string to left and right (vertical dividerAxis)
+$divider_drag_direction = __( 'left and right', 'bigbite-image-comparison' );
 
 /*
  * An array used to generate inline colour css variables, each
@@ -37,9 +39,11 @@ $colours = [
 	[ 'captionBackgroundColour', 'customCaptionBackgroundColour', 'caption-background-colour', $has_caption ],
 ];
 
-// generate extra classes
+// generate extra classes and update divider drag direction string
 if ( 'horizontal' === $attributes['dividerAxis'] ) {
 	$extra_classes[] = 'wp-block-bigbite-image-comparison--horizontal';
+	// Update divider drag direction string to up and down (horizontal dividerAxis)
+	$divider_drag_direction = __( 'up and down', 'bigbite-image-comparison' );
 }
 
 // generate extra styles
@@ -74,6 +78,22 @@ $block_wrapper_attributes = get_block_wrapper_attributes(
 	]
 );
 
+/**
+ * When a caption is present, generate an ID to link the caption to the figure element.
+ */
+if ( $has_caption ) {
+
+	/**
+	 * Generate a unique ID for the figure element if a caption is present.
+	 */
+	$unique_id = 'fig-' . wp_generate_password( special_chars: false );
+
+	/**
+	 * Add the aria role to the $block_wrapper_attributes string
+	 */
+	$block_wrapper_attributes .= ' aria-labelledby="' . $unique_id . '"';
+}
+
 ?>
 <figure <?php echo wp_kses_data( $block_wrapper_attributes ); ?>>
 	<?php
@@ -82,7 +102,7 @@ $block_wrapper_attributes = get_block_wrapper_attributes(
 		'<div class="wp-block-bigbite-image-comparison__container">
 			%s
 			<div class="wp-block-bigbite-image-comparison__divider">
-				<button>
+				<button aria-label="%s">
 					<span></span>
 					<span></span>
 				</button>
@@ -105,11 +125,19 @@ $block_wrapper_attributes = get_block_wrapper_attributes(
 				],
 			]
 		),
+		esc_html(
+			sprintf(
+				/* translators: %s: direction of movement defined using dividerAxis */
+				__( 'Drag this divider %s to compare two images', 'bigbite-image-comparison' ),
+				$divider_drag_direction
+			)
+		)
 	);
 
 	if ( $has_caption ) {
 		printf(
-			'<figcaption class="wp-block-bigbite-image-comparison__caption">%s</figcaption>',
+			'<figcaption class="wp-block-bigbite-image-comparison__caption" id="%s">%s</figcaption>',
+			esc_attr( $unique_id ),
 			wp_kses_post( trim( $attributes['caption'] ) )
 		);
 	}
