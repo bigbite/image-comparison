@@ -9,19 +9,19 @@ import { store as coreStore } from '@wordpress/core-data';
 
 const DEFAULT_SIZE_OPTIONS = [
   {
-    label: _x('Thumbnail', 'Image size option for resolution control'),
+    label: _x('Thumbnail', 'Image size option for resolution control', 'default'),
     value: 'thumbnail',
   },
   {
-    label: _x('Medium', 'Image size option for resolution control'),
+    label: _x('Medium', 'Image size option for resolution control', 'default'),
     value: 'medium',
   },
   {
-    label: _x('Large', 'Image size option for resolution control'),
+    label: _x('Large', 'Image size option for resolution control', 'default'),
     value: 'large',
   },
   {
-    label: _x('Full Size', 'Image size option for resolution control'),
+    label: _x('Full Size', 'Image size option for resolution control', 'default'),
     value: 'full',
   },
 ];
@@ -38,7 +38,7 @@ export default function ResolutionTool({
   id,
   value,
   setAttributes,
-  defaultValue = DEFAULT_SIZE_OPTIONS[0].value,
+  defaultValue = DEFAULT_SIZE_OPTIONS[3].value,
 }) {
   const image = useSelect(
     (select) => (id ? select(coreStore).getMedia(id, { context: 'view' }) : null),
@@ -71,10 +71,7 @@ export default function ResolutionTool({
     const { sizes: imageSizes } = image?.media_details ?? {};
 
     return Object.entries(imageSizes).map(([key]) => ({
-      label: _x(
-        `${convertName(key)}`,
-        __('Image size option for resolution control', 'bigbite-image-comparison'),
-      ),
+      label: convertName(key),
       value: key,
     }));
   };
@@ -113,7 +110,6 @@ export default function ResolutionTool({
       options={getImageSizes()}
       onChange={(val) => updateImage(val)}
       help={__('Select the size of the source image.', 'bigbite-image-comparison')}
-      size="__unstable-large"
     />
   );
 }
