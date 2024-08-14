@@ -1,14 +1,14 @@
-# **Contributing to Image Comparison**
+# Contributing to Image Comparison
 
 First off, thanks for taking the time to contribute! 
 
 All types of contributions are encouraged and valued. Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us to manage the project.
 
-## **Ways to contribute**
+## Ways to contribute
 
 Contributing to Image Comparison involves more than just writing code; it includes any improvements to the project. All contributions are managed here on GitHub.
 
-## **I Have a Question**
+## I Have a Question
 
 Before you ask a question, it is best to search for existing [Issues](https://github.com/bigbite/image-comparison/issues) that might help you. In case you have found a suitable issue and still need clarification, you can write your question in this issue.
 
@@ -20,7 +20,7 @@ If you then still feel the need to ask a question and need clarification, we rec
 
 ## I want to report a bug
 
-### **Before Submitting a Bug Report**
+### Before Submitting a Bug Report
 
 A good bug report shouldn’t leave others needing to chase you up for more information. Therefore, we ask you to investigate carefully, collect information and describe the issue in detail in your report. Please complete the following steps in advance to help us fix any potential bug as fast as possible.
 
@@ -30,7 +30,7 @@ A good bug report shouldn’t leave others needing to chase you up for more info
     - OS, Browser and Version
     - Can you reliably reproduce the issue? And can you also reproduce it with older versions?
 
-### **How Do I Submit a Good Issue?**
+### How Do I Submit a Good Issue?
 
 We use GitHub issues to track Feature Requests, using the following template:
 
@@ -61,16 +61,16 @@ If possible, please upload a screenshot or screen recording which demonstrates t
 - WordPress version: <!-- e.g. "5.8.0". Find this in Tools → Site Health → Info → WordPress -->
 - PHP version: <!-- e.g. "8.2". Find this in Tools → Site Health → Info → Server -->
 
-## **Suggesting a Feature Request or Enhancement**
+## Suggesting a Feature Request or Enhancement
 
 This section guides you through submitting a feature request for Image Comparison, including completely new features and minor improvements to existing functionality.
 
-### **Before Submitting a Feature Request**
+### Before Submitting a Feature Request
 
 - Make sure that you are using the latest version.
 - Perform a [search](https://github.com/bigbite/image-comparison/issues) to see if the enhancement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one.
 
-### **How Do I Submit a Good Feature Request?**
+### How Do I Submit a Good Feature Request?
 
 Enhancement suggestions are tracked as [GitHub issues](https://github.com/bigbite/image-comparison/issues), using the following template:
 

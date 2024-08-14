@@ -2,14 +2,6 @@
 
 Draggable slider component that can be used to compare the difference between two images.
 
-**Support** - Active
-
-**Release** - v1.0.0
-
-**WordPress Version** - 6.6.1 tested
-
-**License** - GPL-2.0
-
 ## Overview
 
 Image Comparison provides a versatile draggable slider component that allows users to compare two images side-by-side. Ideal for showcasing before-and-after scenarios, Image Comparison enables easy visual comparisons through an interactive slider that can be customised to fit your theme.
@@ -35,11 +27,7 @@ Image Comparison requires these software with the following versions:
 
 ## **Issues**
 
-If you spot any mistakes or have an idea to make the plugin better, just [open an issue](#).
-
-## **Support Level**
-
-**Active:** Big Bite are actively working on this plugin and will continue to do so, including testing with the latest versions of WordPress. We welcome bug reports, feature requests, questions, and pull requests.
+ We welcome bug reports, feature requests, questions, and pull requests. If you spot any mistakes or have an idea to make the plugin better, just [open an issue](#).
 
 ## **Contributing**
 
