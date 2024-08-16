@@ -11,10 +11,6 @@
             "type": "boolean",
             "default": true
         },
-        "hasCaption": {
-            "type": "boolean",
-            "default": false
-        },
         "caption": {
             "type": "string"
         },

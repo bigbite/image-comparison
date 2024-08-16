@@ -11,7 +11,7 @@ import { RichText } from '@wordpress/block-editor';
  * @param {string}   props.caption       Caption string
  * @param {function} props.setAttributes Update block attributes
  */
-const Caption = ({ caption, setAttributes }) => {
+const Caption = ({ caption, setAttributes, uniqueId }) => {
   const allowedFormats = [
     'core/link',
     'core/bold',
@@ -27,6 +27,7 @@ const Caption = ({ caption, setAttributes }) => {
 
   return (
     <RichText
+      id={uniqueId}
       value={caption}
       disableLineBreaks
       identifier={caption}

@@ -14,7 +14,6 @@ import {
 /**
  * Internal dependencies
  */
-import SettingsCaption from './SettingsCaption';
 import SettingsOverflow from './SettingsOverflow';
 import SettingsDividerAxis from './SettingsDividerAxis';
 import SettingsContainerSize from './SettingsContainerSize';
@@ -52,7 +51,6 @@ const Settings = ({
     dividerBoxBorderRadius,
     customDividerIconColour,
     dividerIconGap,
-    hasCaption,
     customCaptionTextColour,
     customCaptionBackgroundColour,
     containerHeight,
@@ -118,43 +116,40 @@ const Settings = ({
     },
   ];
 
-  if (hasCaption) {
-    colourSettings?.push(
-      {
-        label: __('Caption Text', 'bigbite-image-comparison'),
-        colorValue: captionTextColour?.color || customCaptionTextColour,
-        /**
-         * Updates captionTextColour and customCaptionTextColour attributes
-         *
-         * @param {string} value Colour value
-         */
-        onColorChange: (value) => {
-          setCaptionTextColour(value);
-          setAttributes({ customCaptionTextColour: value });
-        },
+  colourSettings?.push(
+    {
+      label: __('Caption Text', 'bigbite-image-comparison'),
+      colorValue: captionTextColour?.color || customCaptionTextColour,
+      /**
+       * Updates captionTextColour and customCaptionTextColour attributes
+       *
+       * @param {string} value Colour value
+       */
+      onColorChange: (value) => {
+        setCaptionTextColour(value);
+        setAttributes({ customCaptionTextColour: value });
       },
-      {
-        label: __('Caption Background', 'bigbite-image-comparison'),
-        colorValue: captionBackgroundColour?.color || customCaptionBackgroundColour,
-        /**
-         * Updates captionBackgroundColour and customCaptionBackgroundColour attributes
-         *
-         * @param {string} value Colour value
-         */
-        onColorChange: (value) => {
-          setCaptionBackgroundColour(value);
-          setAttributes({ customCaptionBackgroundColour: value });
-        },
+    },
+    {
+      label: __('Caption Background', 'bigbite-image-comparison'),
+      colorValue: captionBackgroundColour?.color || customCaptionBackgroundColour,
+      /**
+       * Updates captionBackgroundColour and customCaptionBackgroundColour attributes
+       *
+       * @param {string} value Colour value
+       */
+      onColorChange: (value) => {
+        setCaptionBackgroundColour(value);
+        setAttributes({ customCaptionBackgroundColour: value });
       },
-    );
-  }
+    },
+  );
 
   return (
     <>
       <InspectorControls>
         <PanelBody title={__('Settings', 'bigbite-image-comparison')}>
           <SettingsOverflow overflow={overflow} setAttributes={setAttributes} />
-          <SettingsCaption hasCaption={hasCaption} setAttributes={setAttributes} />
           {shouldDisplayResize ? (
             <SettingsContainerSize
               containerBoxHeight={containerHeight}
@@ -199,12 +194,10 @@ const Settings = ({
           __experimentalIsRenderedInSidebar
           disableCustomColors={disableCustomColors}
         />
-        {hasCaption && (
-          <ContrastChecker
-            textColor={customCaptionTextColour}
-            backgroundColor={customCaptionBackgroundColour}
-          />
-        )}
+        <ContrastChecker
+          textColor={customCaptionTextColour}
+          backgroundColor={customCaptionBackgroundColour}
+        />
       </InspectorControls>
     </>
   );

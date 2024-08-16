@@ -41,7 +41,6 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     dividerIconColour,
     customDividerIconColour,
     dividerIconGap,
-    hasCaption,
     caption,
     captionTextColour,
     customCaptionTextColour,
@@ -134,6 +133,8 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     },
   });
 
+  const uniqueId = `fig-${clientId}`;
+
   const { children, ...innerBlocksProps } = useInnerBlocksProps(blockProps, innerBlockSettings);
 
   /**
@@ -169,6 +170,15 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
      */
     return measurement;
   };
+
+  /**
+   * If the caption exists, include the aria-labelledby attribute to block props
+   *
+   * This will supersede the default aria-label attribute
+   */
+  if (caption) {
+    innerBlocksProps['aria-labelledby'] = uniqueId;
+  }
 
   /**
    * Handle the container resize
@@ -207,7 +217,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
         >
           <Container>{children}</Container>
         </ResizableBox>
-        {hasCaption && <Caption caption={caption} setAttributes={setAttributes} />}
+        <Caption caption={caption} setAttributes={setAttributes} uniqueId={uniqueId} />
       </figure>
     </>
   );
