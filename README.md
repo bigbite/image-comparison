@@ -15,8 +15,50 @@ Image Comparison provides a versatile draggable slider component that allows use
 ## Documentation
 
 ### Installing
+When installing to your site, add the following to your `composer.json` file. This will ensure that installation will use the built version of the package, and allow it to be loaded using Composer in the preferred path.
+
+```json
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:bigbite/image-comparison.git"
+    }
+  ],
+  "require": {
+    "bigbite/image-comparison": "dev-main-built"
+  },
+  "extra": {
+    "installer-paths": {
+      "plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ]
+    }
+  }
+}
+
+```
 
 ### Local Development or Manual Install
+Clone the repository into your `plugins` or `client-mu-plugins` directory.
+```
+git clone git@github.com:bigbite/image-comparison.git && cd image-comparison
+```
+
+Install JS packages.
+```
+npm install
+```
+
+Build all assets
+```
+npm run build:dev
+```
+
+Install PHP packages and create autoloader for the plugin.
+```
+composer install
+```
 
 ## Requirements
 
