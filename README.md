@@ -10,8 +10,7 @@ Image Comparison provides a versatile draggable slider component that allows use
 
 ## Demo
 
-![Image Comparison Demo](docs/image-comparison-demo.mp4)
-
+[![Image comparison demo](docs/demo.png)](https://vimeo.com/1000389315)
 
 ## Documentation
 
