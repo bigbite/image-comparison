@@ -57,7 +57,7 @@ npm run build:dev
 
 Install PHP packages and create autoloader for the plugin.
 ```
-composer update
+composer install
 ```
 
 ## Requirements
