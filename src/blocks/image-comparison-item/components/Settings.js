@@ -10,6 +10,7 @@ import { InspectorControls, BlockControls, MediaReplaceFlow } from '@wordpress/b
  */
 import Image from './Image';
 import AlternativeText from './AlternativeText';
+import ResolutionTool from './ResolutionTool';
 
 /**
  * Renders block inspector controls sidebar
@@ -38,6 +39,13 @@ const Settings = ({ attributes, setAttributes }) => (
             id={attributes?.id}
             setAttributes={setAttributes}
             alternativeText={attributes?.alternativeText}
+          />
+        </PanelRow>
+        <PanelRow>
+          <ResolutionTool
+            value={attributes?.sizeSlug}
+            setAttributes={setAttributes}
+            id={attributes?.id}
           />
         </PanelRow>
       </PanelBody>

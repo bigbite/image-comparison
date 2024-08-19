@@ -15,6 +15,10 @@
         },
         "alternativeText": {
             "type": "string"
+        },
+        "sizeSlug": {
+            "type": "string",
+            "default": "full"
         }
     },
     "parent": [ "bigbite/image-comparison" ],

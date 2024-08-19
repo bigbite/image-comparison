@@ -20,7 +20,7 @@ if ( isset( $attributes['alternativeText'] ) && '' !== trim( $attributes['altern
 
 // generate `img` html markup
 $html = wp_get_attachment_image(
-	size: 'full',
+	size: $attributes['sizeSlug'] ?? 'full',
 	attr: $image_args,
 	attachment_id: $attributes['id']
 );
