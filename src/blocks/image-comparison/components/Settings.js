@@ -16,6 +16,7 @@ import {
  */
 import SettingsOverflow from './SettingsOverflow';
 import SettingsDividerAxis from './SettingsDividerAxis';
+import SettingsContainerSize from './SettingsContainerSize';
 import SettingsDividerIconGap from './SettingsDividerIconGap';
 import SettingsDividerBoxWidth from './SettingsDividerBoxWidth';
 import SettingsDividerBoxHeight from './SettingsDividerBoxHeight';
@@ -52,7 +53,10 @@ const Settings = ({
     dividerIconGap,
     customCaptionTextColour,
     customCaptionBackgroundColour,
+    containerHeight,
+    containerWidth,
   },
+  shouldDisplayResize,
   setAttributes,
   clientId,
   dividerColour,
@@ -146,6 +150,13 @@ const Settings = ({
       <InspectorControls>
         <PanelBody title={__('Settings', 'bigbite-image-comparison')}>
           <SettingsOverflow overflow={overflow} setAttributes={setAttributes} />
+          {shouldDisplayResize ? (
+            <SettingsContainerSize
+              containerBoxHeight={containerHeight}
+              containerBoxWidth={containerWidth}
+              setAttributes={setAttributes}
+            />
+          ) : null}
           <SettingsDividerInitialPosition
             setAttributes={setAttributes}
             dividerInitialPosition={dividerInitialPosition}

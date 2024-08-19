@@ -3,12 +3,15 @@
 }
 
 .wp-block-bigbite-image-comparison__container {
+  max-width: 100%;
   touch-action: none;
   border: 0 !important;
   padding: 0 !important;
   line-height: 0 !important;
   position: relative !important;
   overflow: var(--bigbite-image-comparison-overflow);
+  width: var(--bigbite-image-comparison-container-width);
+  height: var(--bigbite-image-comparison-container-height);
 }
 
 .wp-block-bigbite-image-comparison__container * {
@@ -57,12 +60,10 @@
   height: 0;
   border-style: solid;
   border-width: 5px;
-  border-color: transparent var(--bigbite-image-comparison-divider-icon-colour) transparent
-    transparent;
+  border-color: transparent var(--bigbite-image-comparison-divider-icon-colour) transparent transparent;
 
   &:last-of-type {
-    border-color: transparent transparent transparent
-      var(--bigbite-image-comparison-divider-icon-colour);
+    border-color: transparent transparent transparent var(--bigbite-image-comparison-divider-icon-colour);
   }
 }
 
@@ -89,17 +90,16 @@
 }
 
 .wp-block-bigbite-image-comparison--horizontal .wp-block-bigbite-image-comparison__divider span {
-  border-color: transparent transparent var(--bigbite-image-comparison-divider-icon-colour)
-    transparent;
+  border-color: transparent transparent var(--bigbite-image-comparison-divider-icon-colour) transparent;
 
   &:last-of-type {
-    border-color: var(--bigbite-image-comparison-divider-icon-colour) transparent transparent
-      transparent;
+    border-color: var(--bigbite-image-comparison-divider-icon-colour) transparent transparent transparent;
   }
 }
 
 .wp-block-bigbite-image-comparison__caption {
   margin: 8px 0;
   color: var(--bigbite-image-comparison-caption-text-colour);
+  max-width: var(--bigbite-image-comparison-container-width);
   background-color: var(--bigbite-image-comparison-caption-background-colour);
 }
