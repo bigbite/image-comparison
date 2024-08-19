@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Image Comparison
  * Description:       Display two images in a comparison state.
- * Version:           0.0.2
+ * Version:           1.0.0-beta.1
  * Requires at least: 6.3
  * Requires PHP:      8.2
  * Author:            Big Bite®
