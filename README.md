@@ -15,7 +15,7 @@ Image Comparison provides a versatile draggable slider component that allows use
 ## Documentation
 
 ### Installing
-When installing to your site, add the following to you composer.json file. This will ensure that installation will use the build version of the package and allow it to be loaded using composer in the preferred path.
+When installing to your site, add the following to your `composer.json` file. This will ensure that installation will use the built version of the package, and allow it to be loaded using Composer in the preferred path.
 
 ```json
 {
