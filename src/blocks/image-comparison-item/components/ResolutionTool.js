@@ -96,10 +96,7 @@ export default function ResolutionTool({
       return null;
     }
 
-    return setAttributes({
-      url: newUrl,
-      sizeSlug: newSizeSlug,
-    });
+    return setAttributes({ sizeSlug: newSizeSlug });
   };
 
   const displayValue = value ?? defaultValue;

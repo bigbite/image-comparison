@@ -22,12 +22,7 @@ const Edit = ({ attributes, setAttributes }) => {
   return (
     <>
       <Settings attributes={attributes} setAttributes={setAttributes} />
-      <Image
-        id={attributes?.id}
-        url={attributes?.url}
-        blockProps={blockProps}
-        setAttributes={setAttributes}
-      />
+      <Image blockProps={blockProps} attributes={attributes} setAttributes={setAttributes} />
     </>
   );
 };
