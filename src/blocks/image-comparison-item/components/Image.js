@@ -6,7 +6,7 @@ import { MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { Button, Flex, FlexItem } from '@wordpress/components';
 import { store as coreStore } from '@wordpress/core-data';
 import { useSelect } from '@wordpress/data';
-import { useEffect, useState } from '@wordpress/element';
+import { useMemo } from '@wordpress/element';
 
 /**
  * Checks if WP generated the specified image size.
@@ -50,9 +50,11 @@ const Image = ({ alternativeText, id, sizeSlug, setAttributes }) => {
     [id],
   );
 
-  const [src, setSrc] = useState();
+  const src = useMemo(() => {
+    if (!media) {
+      return null;
+    }
 
-  useEffect(() => {
     // Try to use the previous selected image size if its available
     // otherwise fallback to "full"
     let size = 'full';
@@ -60,7 +62,7 @@ const Image = ({ alternativeText, id, sizeSlug, setAttributes }) => {
       size = sizeSlug;
     }
 
-    setSrc(imageUrl(media, size));
+    return imageUrl(media, size);
   }, [media, sizeSlug]);
 
   if (media?.id && src) {
