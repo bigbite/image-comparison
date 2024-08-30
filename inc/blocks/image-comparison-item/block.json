@@ -10,9 +10,6 @@
         "id": {
             "type": "integer"
         },
-        "url": {
-            "type": "string"
-        },
         "alternativeText": {
             "type": "string"
         },

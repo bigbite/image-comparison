@@ -29,7 +29,7 @@ const Settings = ({ attributes, setAttributes }) => (
         <PanelRow>
           <Image
             id={attributes?.id}
-            url={attributes?.url}
+            sizeSlug={attributes?.sizeSlug}
             setAttributes={setAttributes}
             alternativeText={attributes?.alternativeText}
           />
@@ -55,10 +55,9 @@ const Settings = ({ attributes, setAttributes }) => (
         accept="image/*"
         mediaId={attributes?.id}
         allowedTypes={['image']}
-        mediaURL={attributes?.url}
-        onSelect={(media) => setAttributes({ id: media?.id, url: media?.url })}
+        onSelect={(media) => setAttributes({ id: media?.id })}
         name={
-          attributes?.id && attributes?.url
+          attributes?.id
             ? __('Replace', 'bigbite-image-comparison')
             : __('Select Image', 'bigbite-image-comparison')
         }

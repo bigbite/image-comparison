@@ -16,20 +16,14 @@ import Settings from './Settings';
  * @param {object}   props.attributes    Block attributes
  * @param {function} props.setAttributes Update block attributes
  */
-const Edit = ({ attributes, setAttributes }) => {
-  const blockProps = useBlockProps();
-
-  return (
-    <>
-      <Settings attributes={attributes} setAttributes={setAttributes} />
-      <Image
-        id={attributes?.id}
-        url={attributes?.url}
-        blockProps={blockProps}
-        setAttributes={setAttributes}
-      />
-    </>
-  );
-};
+const Edit = ({ attributes, setAttributes }) => (
+  <>
+    <Settings attributes={attributes} setAttributes={setAttributes} />
+    {/* eslint-disable-next-line react/jsx-props-no-spreading -- this is the recommended approach */}
+    <div {...useBlockProps()}>
+      <Image id={attributes.id} sizeSlug={attributes.sizeSlug} setAttributes={setAttributes} />
+    </div>
+  </>
+);
 
 export default Edit;
