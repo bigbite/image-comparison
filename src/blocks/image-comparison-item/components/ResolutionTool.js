@@ -4,7 +4,6 @@
 import { SelectControl } from '@wordpress/components';
 import { __, _x } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
-import { useEffect } from '@wordpress/element';
 import { store as coreStore } from '@wordpress/core-data';
 
 const DEFAULT_SIZE_OPTIONS = [
@@ -75,13 +74,6 @@ export default function ResolutionTool({
       value: key,
     }));
   };
-
-  // reset image resolution when image changes
-  useEffect(() => {
-    setAttributes({
-      sizeSlug: 'full',
-    });
-  }, [id]);
 
   /**
    * Updates the image URL and size slug attributes based on the selected image size.
