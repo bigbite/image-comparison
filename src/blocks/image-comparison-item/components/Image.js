@@ -32,7 +32,12 @@ function hasSize(image, size) {
  * @return {String} the located image size URI.
  */
 function imageUrl(image, size) {
-  return image?.sizes?.[size]?.url || image?.media_details?.sizes?.[size]?.source_url || image?.url;
+  return (
+    image?.sizes?.[size]?.url ||
+    image?.media_details?.sizes?.[size]?.source_url ||
+    image?.url ||
+    image?.source_url
+  );
 }
 
 /**
