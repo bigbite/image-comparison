@@ -29,6 +29,7 @@ const Settings = ({ attributes, setAttributes }) => (
         <PanelRow>
           <Image
             id={attributes?.id}
+            sizeSlug={attributes?.sizeSlug}
             setAttributes={setAttributes}
             alternativeText={attributes?.alternativeText}
           />
