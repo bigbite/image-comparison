@@ -27,11 +27,11 @@
     },
     {
       "step": "mkdir",
-      "path": "/tmp/assets"
+      "path": "/wordpress/_assets"
     },
     {
       "step": "unzip",
-      "extractToPath": "/tmp/assets",
+      "extractToPath": "/wordpress/_assets",
       "zipFile": {
         "resource": "url",
         "url": "https://github-proxy.com/proxy/?repo=bigbite/image-comparison&branch=feat/playground&directory=/docs/playground/playground.zip"
@@ -39,11 +39,11 @@
     },
     {
       "step": "wp-cli",
-      "command": "wp media import --post_id=1 /tmp/assets/playground/before.png"
+      "command": "wp media import --post_id=1 /wordpress/_assets/before.png"
     },
     {
       "step": "wp-cli",
-      "command": "wp media import --post_id=1 /tmp/assets/playground/after.png"
+      "command": "wp media import --post_id=1 /wordpress/_assets/after.png"
     },
     {
       "step": "wp-cli",
