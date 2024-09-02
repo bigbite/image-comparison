@@ -9,6 +9,7 @@
   "features": {
     "networking": true
   },
+  "landingPage": "/?p=1",
   "steps": [
     {
       "step": "login",
@@ -27,15 +28,15 @@
     },
     {
       "step": "wp-cli",
-      "command": "wp media import --post_id=1 https://github-proxy.com/proxy/?repo=bigbite/image-comparison&branch=feat/playground&directory=/docs/playground/before.png"
+      "command": "wp media import --post_id=1 https://raw.githubusercontent.com/bigbite/image-comparison/feat/playground/docs/playground/before.png"
     },
     {
       "step": "wp-cli",
-      "command": "wp media import --post_id=1 https://github-proxy.com/proxy/?repo=bigbite/image-comparison&branch=feat/playground&directory=/docs/playground/after.png"
+      "command": "wp media import --post_id=1 https://raw.githubusercontent.com/bigbite/image-comparison/feat/playground/docs/playground/after.png"
     },
     {
-      "step": "wp-cli",
-      "command": "wp post update 1 --post_content=\"<!-- wp:bigbite/image-comparison {\"caption\":\"Photo by \u003ca href=\u0022https://unsplash.com/@jbcreate_\u0022\u003eJoseph Barrientos\u003c/a\u003e via Unsplash.\",\"containerWidth\":\"620px\"} -->\n<!-- wp:bigbite/image-comparison-item {\"id\":9,\"url\":\"https://playground.wordpress.net/scope:0.8173980225110016/wp-content/uploads/2024/07/after.png\"} /-->\n\n<!-- wp:bigbite/image-comparison-item {\"id\":8,\"url\":\"https://playground.wordpress.net/scope:0.8173980225110016/wp-content/uploads/2024/07/before.png\"} /-->\n<!-- /wp:bigbite/image-comparison -->\""
+      "step": "runPHP",
+      "code": "<?php require_once 'wordpress/wp-load.php';$GLOBALS['wpdb']->update('wp_posts',['post_content'=>base64_decode('PCEtLSB3cDpiaWdiaXRlL2ltYWdlLWNvbXBhcmlzb24geyJjYXB0aW9uIjoiUGhvdG8gYnkgPGEgaHJlZj0iaHR0cHM6Ly91bnNwbGFzaC5jb20vQGpiY3JlYXRlXyI+Sm9zZXBoIEJhcnJpZW50b3M8L2E+IHZpYSBVbnNwbGFzaC4iLCJjb250YWluZXJXaWR0aCI6IjYyMHB4In0gLS0+CjwhLS0gd3A6YmlnYml0ZS9pbWFnZS1jb21wYXJpc29uLWl0ZW0geyJpZCI6NX0gLy0tPgo8IS0tIHdwOmJpZ2JpdGUvaW1hZ2UtY29tcGFyaXNvbi1pdGVtIHsiaWQiOjR9IC8tLT4KPCEtLSAvd3A6YmlnYml0ZS9pbWFnZS1jb21wYXJpc29uIC0tPg==')],['id'=>1]);?>"
     }
   ]
 }
