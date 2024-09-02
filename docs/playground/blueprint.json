@@ -1,0 +1,53 @@
+{
+  "preferredVersions": {
+    "php": "8.2",
+    "wp": "latest"
+  },
+  "phpExtensionBundles": [
+    "kitchen-sink"
+  ],
+  "features": {
+    "networking": true
+  },
+  "steps": [
+    {
+      "step": "login",
+      "username": "admin",
+      "password": "password"
+    },
+    {
+      "step": "installPlugin",
+      "pluginZipFile": {
+        "resource": "url",
+        "url": "https://github-proxy.com/proxy/?repo=bigbite/image-comparison&branch=main-built"
+      },
+      "options": {
+        "activate": true
+      }
+    },
+    {
+      "step": "mkdir",
+      "path": "/tmp/assets"
+    },
+    {
+      "step": "unzip",
+      "extractToPath": "/tmp/assets",
+      "zipFile": {
+        "resource": "url",
+        "url": "https://github-proxy.com/proxy/?repo=bigbite/image-comparison&branch=feat/playground&directory=/docs/playground/playground.zip"
+      }
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp media import --post_id=1 /tmp/assets/playground/before.png"
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp media import --post_id=1 /tmp/assets/playground/after.png"
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp post update 1 --post_content=\"<!-- wp:bigbite/image-comparison {\"caption\":\"Photo by \u003ca href=\u0022https://unsplash.com/@jbcreate_\u0022\u003eJoseph Barrientos\u003c/a\u003e via Unsplash.\",\"containerWidth\":\"620px\"} -->\n<!-- wp:bigbite/image-comparison-item {\"id\":9,\"url\":\"https://playground.wordpress.net/scope:0.8173980225110016/wp-content/uploads/2024/07/after.png\"} /-->\n\n<!-- wp:bigbite/image-comparison-item {\"id\":8,\"url\":\"https://playground.wordpress.net/scope:0.8173980225110016/wp-content/uploads/2024/07/before.png\"} /-->\n<!-- /wp:bigbite/image-comparison -->\""
+    }
+  ]
+}
