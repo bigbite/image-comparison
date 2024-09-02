@@ -28,11 +28,11 @@
     },
     {
       "step": "wp-cli",
-      "command": "wp media import --post_id=1 https://raw.githubusercontent.com/bigbite/image-comparison/feat/playground/docs/playground/before.png"
+      "command": "wp media import --post_id=1 https://raw.githubusercontent.com/bigbite/image-comparison/main/docs/playground/before.png"
     },
     {
       "step": "wp-cli",
-      "command": "wp media import --post_id=1 https://raw.githubusercontent.com/bigbite/image-comparison/feat/playground/docs/playground/after.png"
+      "command": "wp media import --post_id=1 https://raw.githubusercontent.com/bigbite/image-comparison/main/docs/playground/after.png"
     },
     {
       "step": "runPHP",
