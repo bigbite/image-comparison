@@ -36,7 +36,7 @@
     },
     {
       "step": "runPHP",
-      "code": "<?php require_once 'wordpress/wp-load.php';$GLOBALS['wpdb']->update('wp_posts',['post_content'=>base64_decode('PCEtLSB3cDpiaWdiaXRlL2ltYWdlLWNvbXBhcmlzb24geyJjYXB0aW9uIjoiUGhvdG8gYnkgPGEgaHJlZj0iaHR0cHM6Ly91bnNwbGFzaC5jb20vQGpiY3JlYXRlXyI+Sm9zZXBoIEJhcnJpZW50b3M8L2E+IHZpYSBVbnNwbGFzaC4iLCJjb250YWluZXJXaWR0aCI6IjYyMHB4In0gLS0+CjwhLS0gd3A6YmlnYml0ZS9pbWFnZS1jb21wYXJpc29uLWl0ZW0geyJpZCI6NX0gLy0tPgo8IS0tIHdwOmJpZ2JpdGUvaW1hZ2UtY29tcGFyaXNvbi1pdGVtIHsiaWQiOjR9IC8tLT4KPCEtLSAvd3A6YmlnYml0ZS9pbWFnZS1jb21wYXJpc29uIC0tPg==')],['id'=>1]);?>"
+      "code": "<?php require_once 'wordpress/wp-load.php';$GLOBALS['wpdb']->update('wp_posts',['post_content'=>base64_decode('PCEtLSB3cDpiaWdiaXRlL2ltYWdlLWNvbXBhcmlzb24geyJjYXB0aW9uIjoiUGhvdG8gYnkgPGEgaHJlZj0iaHR0cHM6Ly91bnNwbGFzaC5jb20vQGpiY3JlYXRlXyI+Sm9zZXBoIEJhcnJpZW50b3M8L2E+IHZpYSBVbnNwbGFzaC4iLCJjb250YWluZXJIZWlnaHQiOiI2MjBweCIsImNvbnRhaW5lcldpZHRoIjoiNjIwcHgiLCJhbGlnbiI6ImNlbnRlciJ9IC0tPgo8IS0tIHdwOmJpZ2JpdGUvaW1hZ2UtY29tcGFyaXNvbi1pdGVtIHsiaWQiOjV9IC8tLT4KPCEtLSB3cDpiaWdiaXRlL2ltYWdlLWNvbXBhcmlzb24taXRlbSB7ImlkIjo0fSAvLS0+CjwhLS0gL3dwOmJpZ2JpdGUvaW1hZ2UtY29tcGFyaXNvbiAtLT4=')],['id'=>1]);?>"
     }
   ]
 }
