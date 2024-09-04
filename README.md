@@ -40,7 +40,8 @@ When installing to your site, add the following to your `composer.json` file. Th
 ```
 
 ### Local Development or Manual Install
-Clone the repository into your `plugins` or `client-mu-plugins` directory.
+Clone the repository into your `plugins` or `client-mu-plugins` directory.  
+**NB**: If you have access to [Docker](https://www.docker.com/), you can spin up a local development environment using [wp-env](https://github.com/WordPress/gutenberg/tree/trunk/packages/env), in which case you may clone the repository into any directory.
 ```
 git clone git@github.com:bigbite/image-comparison.git && cd image-comparison
 ```
@@ -50,7 +51,7 @@ Install JS packages.
 npm install
 ```
 
-Build all assets
+Build all assets.
 ```
 npm run build:dev
 ```
@@ -59,6 +60,8 @@ Install PHP packages and create autoloader for the plugin.
 ```
 composer install
 ```
+
+If using wp-env, you can run its commands by running `npm run env [command]`.
 
 ## Requirements
 

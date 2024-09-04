@@ -1,0 +1,6 @@
+{
+  "plugins": ["."],
+  "lifecycleScripts": {
+    "afterStart": "npm run env run cli wp plugin activate image-comparison"
+  }
+}
