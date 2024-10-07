@@ -95,37 +95,45 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     topRight: false,
   };
 
-  const blockProps = useBlockProps({
-    style: {
-      '--bigbite-image-comparison-overflow': overflow ? 'visible' : 'hidden',
-      '--bigbite-image-comparison-divider-initial-position': dividerInitialPosition,
-      '--bigbite-image-comparison-divider-thickness': dividerThickness,
-      '--bigbite-image-comparison-divider-box-width': dividerBoxWidth,
-      '--bigbite-image-comparison-divider-box-height': dividerBoxHeight,
-      '--bigbite-image-comparison-divider-box-border-radius': dividerBoxBorderRadius?.top,
-      '--bigbite-image-comparison-divider-icon-gap': dividerIconGap,
-      '--bigbite-image-comparison-divider-colour': dividerColour
-        ? `var( --wp--preset--color--${dividerColour}, ${customDividerColour} )`
-        : customDividerColour,
-      '--bigbite-image-comparison-divider-box-colour': dividerBoxColour
-        ? `var( --wp--preset--color--${dividerBoxColour}, ${customDividerBoxColour} )`
-        : customDividerBoxColour,
-      '--bigbite-image-comparison-divider-icon-colour': dividerIconColour
-        ? `var( --wp--preset--color--${dividerIconColour}, ${customDividerIconColour} )`
-        : customDividerIconColour,
-      '--bigbite-image-comparison-caption-text-colour': captionTextColour
-        ? `var( --wp--preset--color--${captionTextColour}, ${customCaptionTextColour} )`
-        : customCaptionTextColour,
-      '--bigbite-image-comparison-caption-background-colour': captionBackgroundColour
-        ? `var( --wp--preset--color--${captionBackgroundColour}, ${customCaptionBackgroundColour} )`
-        : customCaptionBackgroundColour,
-      '--bigbite-image-comparison-container-height': containerHeight,
-      '--bigbite-image-comparison-container-width': containerWidth,
-    },
-    className: {
-      'wp-block-bigbite-image-comparison--horizontal': dividerAxis === 'horizontal',
-    },
-  });
+  /**
+   * Generates the block props.
+   *
+   * @returns the block props.
+   */
+  const getBlockProps = () =>
+    useBlockProps({
+      style: {
+        '--bigbite-image-comparison-overflow': overflow ? 'visible' : 'hidden',
+        '--bigbite-image-comparison-divider-initial-position': dividerInitialPosition,
+        '--bigbite-image-comparison-divider-thickness': dividerThickness,
+        '--bigbite-image-comparison-divider-box-width': dividerBoxWidth,
+        '--bigbite-image-comparison-divider-box-height': dividerBoxHeight,
+        '--bigbite-image-comparison-divider-box-border-radius': dividerBoxBorderRadius?.top,
+        '--bigbite-image-comparison-divider-icon-gap': dividerIconGap,
+        '--bigbite-image-comparison-divider-colour': dividerColour
+          ? `var( --wp--preset--color--${dividerColour}, ${customDividerColour} )`
+          : customDividerColour,
+        '--bigbite-image-comparison-divider-box-colour': dividerBoxColour
+          ? `var( --wp--preset--color--${dividerBoxColour}, ${customDividerBoxColour} )`
+          : customDividerBoxColour,
+        '--bigbite-image-comparison-divider-icon-colour': dividerIconColour
+          ? `var( --wp--preset--color--${dividerIconColour}, ${customDividerIconColour} )`
+          : customDividerIconColour,
+        '--bigbite-image-comparison-caption-text-colour': captionTextColour
+          ? `var( --wp--preset--color--${captionTextColour}, ${customCaptionTextColour} )`
+          : customCaptionTextColour,
+        '--bigbite-image-comparison-caption-background-colour': captionBackgroundColour
+          ? `var( --wp--preset--color--${captionBackgroundColour}, ${customCaptionBackgroundColour} )`
+          : customCaptionBackgroundColour,
+        '--bigbite-image-comparison-container-height': containerHeight,
+        '--bigbite-image-comparison-container-width': containerWidth,
+      },
+      className: {
+        'wp-block-bigbite-image-comparison--horizontal': dividerAxis === 'horizontal',
+      },
+    });
+
+  const blockProps = getBlockProps();
 
   const uniqueId = `fig-${clientId}`;
 
