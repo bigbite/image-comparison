@@ -53,11 +53,18 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
    * applied if these values have not been specifically set by a user.
    *
    * @returns {
-   *  width: string|undefined
-   *  height: string|undefined
+   *  width: string
+   *  height: string
    * } The size containing the height and width of the block's container.
    */
   const getContainerSize = () => {
+    if (attributes.align) {
+      return {
+        containerWidth: 'auto',
+        containerHeight: 'auto',
+      };
+    }
+
     let containerHeight = '500px';
     if (attributes.containerHeight) {
       containerHeight = attributes.containerHeight;
