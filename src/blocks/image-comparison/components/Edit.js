@@ -3,7 +3,6 @@
  */
 import { ResizableBox } from '@wordpress/components';
 import { useInnerBlocksProps, useBlockProps, useSettings } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -46,9 +45,38 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     customCaptionTextColour,
     captionBackgroundColour,
     customCaptionBackgroundColour,
-    containerHeight,
-    containerWidth,
   } = attributes;
+
+  /**
+   * Get the container's size. If this has not been set by
+   * the user then we overwrite the default size of the block
+   * with the theme's defined contentSize, if it exists.
+   *
+   * @returns {
+   *  width: string
+   *  height: string
+   * } The size containing the height and width of the block's container.
+   */
+  const getContainerSize = () => {
+    let containerHeight = '500px';
+    if (attributes.containerHeight) {
+      containerHeight = attributes.containerHeight;
+    }
+
+    let containerWidth = '500px';
+    if (attributes.containerWidth) {
+      containerWidth = attributes.containerWidth;
+    } else if (contentWidth) {
+      containerWidth = contentWidth;
+    }
+
+    return {
+      containerHeight,
+      containerWidth,
+    };
+  };
+
+  const { containerHeight, containerWidth } = getContainerSize();
 
   const innerBlockSettings = {
     template: [['bigbite/image-comparison-item'], ['bigbite/image-comparison-item']],
@@ -60,17 +88,6 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
    * Initially set the resize handles to be hidden
    */
   let shouldDisplayResize = false;
-
-  /**
-   * Overwrite the default size of the block with the theme's
-   * defined contentSize, if it exists. This should only be
-   * applied if no images have been added to the block.
-   */
-  useEffect(() => {
-    if (!shouldDisplayResize) {
-      setAttributes({ containerWidth: contentWidth });
-    }
-  }, [contentWidth]);
 
   /**
    * Retrieve the inner blocks
