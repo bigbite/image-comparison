@@ -51,9 +51,32 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
    * Overwrite the default size of the block with the theme's
    * defined contentSize, if it exists. This should only be
    * applied if these values have not been specifically set by a user.
+   *
+   * @returns {
+   *  width: string|undefined The container's width.
+   *  height: string|undefined The container's height.
+   * } The size containing the height and width of the block's container.
    */
-  const containerHeight = attributes.containerHeight ?? '500px';
-  const containerWidth = attributes.containerWidth ?? contentWidth ?? '500px';
+  const getContainerSize = () => {
+    let containerHeight = '500px';
+    if (attributes.containerHeight) {
+      containerHeight = attributes.containerHeight;
+    }
+
+    let containerWidth = '500px';
+    if (attributes.containerWidth) {
+      containerWidth = attributes.containerWidth;
+    } else if (contentWidth) {
+      containerWidth = contentWidth;
+    }
+
+    return {
+      containerHeight,
+      containerWidth,
+    };
+  };
+
+  const { containerHeight, containerWidth } = getContainerSize();
 
   const innerBlockSettings = {
     template: [['bigbite/image-comparison-item'], ['bigbite/image-comparison-item']],
