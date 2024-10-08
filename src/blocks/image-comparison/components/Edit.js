@@ -102,14 +102,19 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
   const [{ innerBlocks }] = wp.data.select('core/block-editor').getBlocksByClientId(clientId);
 
   /**
-   * Determine whether to allow the resize handles to be
-   * displayed based on if an image is assigned or not
+   * Don't display resize handles if the user has chosen one of the alignment settings.
    */
-  innerBlocks.forEach((block) => {
-    if (block?.attributes?.id) {
-      shouldDisplayResize = true;
-    }
-  });
+  if (!attributes.align) {
+    /**
+     * Determine whether to allow the resize handles to be
+     * displayed based on if an image is assigned or not
+     */
+    innerBlocks.forEach((block) => {
+      if (block?.attributes?.id) {
+        shouldDisplayResize = true;
+      }
+    });
+  }
 
   /**
    * Only ever display the right, bottom, and bottomRight handles
