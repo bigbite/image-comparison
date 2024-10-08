@@ -48,9 +48,9 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
   } = attributes;
 
   /**
-   * Overwrite the default size of the block with the theme's
-   * defined contentSize, if it exists. This should only be
-   * applied if these values have not been specifically set by a user.
+   * Get the container's size. If this has not been set by
+   * the user then we overwrite the default size of the block
+   * with the theme's defined contentSize, if it exists.
    *
    * @returns {
    *  width: string
