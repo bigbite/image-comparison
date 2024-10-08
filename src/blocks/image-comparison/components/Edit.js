@@ -53,8 +53,8 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
    * applied if these values have not been specifically set by a user.
    *
    * @returns {
-   *  width: string|undefined The container's width.
-   *  height: string|undefined The container's height.
+   *  width: string|undefined
+   *  height: string|undefined
    * } The size containing the height and width of the block's container.
    */
   const getContainerSize = () => {
