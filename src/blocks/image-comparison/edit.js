@@ -8,9 +8,9 @@ import { useEffect } from '@wordpress/element';
 /**
  * Internal dependencies
  */
-import Caption from './Caption';
-import Settings from './Settings';
-import Container from './Container';
+import Caption from './components/Caption';
+import Settings from './components/Settings';
+import Container from './components/Container';
 
 /**
  * Block edit function

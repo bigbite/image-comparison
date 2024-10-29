@@ -6,8 +6,8 @@ import { useBlockProps } from '@wordpress/block-editor';
 /**
  * Internal dependencies
  */
-import Image from './Image';
-import Settings from './Settings';
+import Image from './components/Image';
+import Settings from './components/Settings';
 
 /**
  * Block edit function

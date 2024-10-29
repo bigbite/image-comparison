@@ -19,6 +19,6 @@
         "@wordpress/i18n": "^5.0.0"
     },
     "devDependencies": {
-        "@bigbite/build-tools": "^1.3.1"
+        "@bigbite/build-tools": "^2.0.0-alpha.3"
     }
 }

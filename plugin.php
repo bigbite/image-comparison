@@ -46,6 +46,3 @@ if (
 
 	return;
 }
-
-require_once BIGBITE_IMAGE_COMPARISON_PLUGIN_DIR . '/inc/class-loader.php';
-new Loader( BIGBITE_IMAGE_COMPARISON_PLUGIN_DIR );

@@ -6,10 +6,11 @@ import { registerBlockType } from '@wordpress/blocks';
 /**
  * Internal dependencies
  */
-import Edit from './components/Edit';
-import Save from './components/Save';
+import Edit from './edit';
+import Save from './save';
+import './styles/style.scss';
 import './styles/editor.scss';
-import metadata from '../../../inc/blocks/image-comparison/block.json';
+import metadata from './block.json';
 
 registerBlockType(metadata.name, {
   edit: Edit,
