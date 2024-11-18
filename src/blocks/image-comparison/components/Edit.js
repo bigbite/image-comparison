@@ -3,7 +3,6 @@
  */
 import { ResizableBox } from '@wordpress/components';
 import { useInnerBlocksProps, useBlockProps, useSettings } from '@wordpress/block-editor';
-import { useEffect } from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -46,9 +45,45 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     customCaptionTextColour,
     captionBackgroundColour,
     customCaptionBackgroundColour,
-    containerHeight,
-    containerWidth,
   } = attributes;
+
+  /**
+   * Get the container's size. If this has not been set by
+   * the user then we overwrite the default size of the block
+   * with the theme's defined contentSize, if it exists.
+   *
+   * @returns {
+   *  width: string
+   *  height: string
+   * } The size containing the height and width of the block's container.
+   */
+  const getContainerSize = () => {
+    if (attributes.align) {
+      return {
+        containerWidth: 'auto',
+        containerHeight: 'auto',
+      };
+    }
+
+    let containerHeight = '500px';
+    if (attributes.containerHeight) {
+      containerHeight = attributes.containerHeight;
+    }
+
+    let containerWidth = '500px';
+    if (attributes.containerWidth) {
+      containerWidth = attributes.containerWidth;
+    } else if (contentWidth) {
+      containerWidth = contentWidth;
+    }
+
+    return {
+      containerHeight,
+      containerWidth,
+    };
+  };
+
+  const { containerHeight, containerWidth } = getContainerSize();
 
   const innerBlockSettings = {
     template: [['bigbite/image-comparison-item'], ['bigbite/image-comparison-item']],
@@ -62,30 +97,24 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
   let shouldDisplayResize = false;
 
   /**
-   * Overwrite the default size of the block with the theme's
-   * defined contentSize, if it exists. This should only be
-   * applied if no images have been added to the block.
-   */
-  useEffect(() => {
-    if (!shouldDisplayResize) {
-      setAttributes({ containerWidth: contentWidth });
-    }
-  }, [contentWidth]);
-
-  /**
    * Retrieve the inner blocks
    */
   const [{ innerBlocks }] = wp.data.select('core/block-editor').getBlocksByClientId(clientId);
 
   /**
-   * Determine whether to allow the resize handles to be
-   * displayed based on if an image is assigned or not
+   * Don't display resize handles if the user has chosen one of the alignment settings.
    */
-  innerBlocks.forEach((block) => {
-    if (block?.attributes?.id) {
-      shouldDisplayResize = true;
-    }
-  });
+  if (!attributes.align) {
+    /**
+     * Determine whether to allow the resize handles to be
+     * displayed based on if an image is assigned or not
+     */
+    innerBlocks.forEach((block) => {
+      if (block?.attributes?.id) {
+        shouldDisplayResize = true;
+      }
+    });
+  }
 
   /**
    * Only ever display the right, bottom, and bottomRight handles
