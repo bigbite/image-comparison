@@ -38,7 +38,15 @@ test.describe('Image Comparison block', () => {
         .first()
         .click();
 
-      await page.getByLabel('before').click();
+      // Get the aria-checked attribute of the before image
+      const isBeforeImageSelected = await page.getByLabel('before').getAttribute('aria-checked');
+
+      // If the before image is not already selected, select it
+      if (isBeforeImageSelected === 'false') {
+        await page.getByLabel('before').click();
+      }
+
+      // Press the Select button to use the image
       await page.getByRole('button', { name: 'Select', exact: true }).click();
 
       // Ensure the first image is added to the block
@@ -48,6 +56,9 @@ test.describe('Image Comparison block', () => {
         .getByLabel('Block: Image Comparison Item')
         .first();
       await expect(firstComparisonImage).toBeVisible();
+
+      // Expect that the correct image is used
+      await expect(firstComparisonImage.getByRole('img')).toHaveAttribute('src', /before/i);
     });
 
     await test.step('add an image into slot 2', async () => {
@@ -58,7 +69,15 @@ test.describe('Image Comparison block', () => {
         .first()
         .click();
 
-      await page.getByLabel('after').click();
+      // Get the aria-checked attribute of the before image
+      const isAfterImageSelected = await page.getByLabel('after').getAttribute('aria-checked');
+
+      // If the after image is not already selected, select it
+      if (isAfterImageSelected === 'false') {
+        await page.getByLabel('after').click();
+      }
+
+      // Press the Select button to use the image
       await page.getByRole('button', { name: 'Select', exact: true }).click();
 
       // Ensure the second image is added to the block
@@ -68,6 +87,9 @@ test.describe('Image Comparison block', () => {
         .getByLabel('Block: Image Comparison Item')
         .nth(1);
       await expect(secondComparisonImage).toBeVisible();
+
+      // Expect that the correct image is used
+      await expect(secondComparisonImage.getByRole('img')).toHaveAttribute('src', /after/i);
     });
 
     await test.step('Add a caption', async () => {
@@ -89,8 +111,10 @@ test.describe('Image Comparison block', () => {
         .getByLabel('Editor publish')
         .getByRole('button', { name: 'Publish', exact: true })
         .click();
+
       // Visit the page
       await page.getByTestId('snackbar').getByRole('link', { name: 'View Post' }).click();
+
       // Make sure the heading is correct
       await expect(page.title()).resolves.toMatch('Test Image Comparison Block');
     });
@@ -124,7 +148,6 @@ test.describe('Image Comparison block', () => {
   /**
    * Test to ensure if the block is not populated, it is not rendered
    */
-
   test('should be added to a page with no images', async ({ editor, page }) => {
     await test.step('add the block to the page', async () => {
       await editor.insertBlock({ name: 'bigbite/image-comparison' });
@@ -139,26 +162,6 @@ test.describe('Image Comparison block', () => {
       await expect(imageComparisonBlock).toBeVisible();
     });
 
-    await test.step('add an image into slot 1', async () => {
-      await page
-        .locator('iframe[name="editor-canvas"]')
-        .contentFrame()
-        .getByRole('button', { name: 'Select Image' })
-        .first()
-        .click();
-
-      await page.getByLabel('before').click();
-      await page.getByRole('button', { name: 'Select', exact: true }).click();
-
-      // Ensure the first image is added to the block
-      const firstComparisonImage = page
-        .locator('iframe[name="editor-canvas"]')
-        .contentFrame()
-        .getByLabel('Block: Image Comparison Item')
-        .first();
-      await expect(firstComparisonImage).toBeVisible();
-    });
-
     await test.step('Save and visit the page', async () => {
       // Save the page
       await page.getByRole('button', { name: 'Publish', exact: true }).click();
@@ -166,8 +169,10 @@ test.describe('Image Comparison block', () => {
         .getByLabel('Editor publish')
         .getByRole('button', { name: 'Publish', exact: true })
         .click();
+
       // Visit the page
       await page.getByTestId('snackbar').getByRole('link', { name: 'View Post' }).click();
+
       // Make sure the heading is correct
       await expect(page.title()).resolves.toMatch('Test Image Comparison Block');
     });
@@ -205,7 +210,15 @@ test.describe('Image Comparison block', () => {
         .first()
         .click();
 
-      await page.getByLabel('before').click();
+      // Get the aria-checked attribute of the before image
+      const isBeforeImageSelected = await page.getByLabel('before').getAttribute('aria-checked');
+
+      // If the before image is not already selected, select it
+      if (isBeforeImageSelected == 'false') {
+        await page.getByLabel('before').click();
+      }
+
+      // Press the Select button to use the image
       await page.getByRole('button', { name: 'Select', exact: true }).click();
 
       // Ensure the first image is added to the block
@@ -215,6 +228,9 @@ test.describe('Image Comparison block', () => {
         .getByLabel('Block: Image Comparison Item')
         .first();
       await expect(firstComparisonImage).toBeVisible();
+
+      // Expect that the correct image is used
+      await expect(firstComparisonImage.getByRole('img')).toHaveAttribute('src', /before/i);
     });
 
     await test.step('Save and visit the page', async () => {
@@ -224,8 +240,10 @@ test.describe('Image Comparison block', () => {
         .getByLabel('Editor publish')
         .getByRole('button', { name: 'Publish', exact: true })
         .click();
+
       // Visit the page
       await page.getByTestId('snackbar').getByRole('link', { name: 'View Post' }).click();
+
       // Make sure the heading is correct
       await expect(page.title()).resolves.toMatch('Test Image Comparison Block');
     });
@@ -264,16 +282,27 @@ test.describe('Image Comparison block', () => {
         .nth(1)
         .click();
 
-      await page.getByLabel('after').click();
+      // Get the aria-checked attribute of the before image
+      const isAfterImageSelected = await page.getByLabel('after').getAttribute('aria-checked');
+
+      // If the after image is not already selected, select it
+      if (isAfterImageSelected === 'false') {
+        await page.getByLabel('after').click();
+      }
+
+      // Press the Select button to use the image
       await page.getByRole('button', { name: 'Select', exact: true }).click();
 
-      // Ensure the first image is added to the block
+      // Ensure the second image is added to the block
       const secondComparisonImage = page
         .locator('iframe[name="editor-canvas"]')
         .contentFrame()
         .getByLabel('Block: Image Comparison Item')
         .nth(1);
       await expect(secondComparisonImage).toBeVisible();
+
+      // Expect that the correct image is used
+      await expect(secondComparisonImage.getByRole('img')).toHaveAttribute('src', /after/i);
     });
 
     await test.step('Save and visit the page', async () => {
@@ -283,8 +312,10 @@ test.describe('Image Comparison block', () => {
         .getByLabel('Editor publish')
         .getByRole('button', { name: 'Publish', exact: true })
         .click();
+
       // Visit the page
       await page.getByTestId('snackbar').getByRole('link', { name: 'View Post' }).click();
+
       // Make sure the heading is correct
       await expect(page.title()).resolves.toMatch('Test Image Comparison Block');
     });
