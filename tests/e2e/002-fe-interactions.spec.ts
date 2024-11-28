@@ -53,7 +53,7 @@ test.describe('Front end interactions', () => {
   /**
    * Ensure the divider can be dragged horizontally on the front end, with default settings
    */
-  test('test the divider can be dragged horizontally', async ({ blockFixtures, page }) => {
+  test('should allow the divider to be dragged horizontally', async ({ blockFixtures, page }) => {
     await test.step('Change the starting position of the divider', async () => {
       // Check if the Settings panel is open
       const isSettingsPanelOpen = await page.getByLabel('Editor settings').isVisible();
@@ -127,7 +127,11 @@ test.describe('Front end interactions', () => {
   /**
    * Ensure the divider can be dragged vertically on the front end, with other default settings
    */
-  test('test the divider can be dragged vertically', async ({ blockFixtures, editor, page }) => {
+  test('should allow the divider to be dragged vertically', async ({
+    blockFixtures,
+    editor,
+    page,
+  }) => {
     await test.step('Set the block to have a horizontal divider', async () => {
       // Check if the Settings panel is open
       const isSettingsPanelOpen = await page.getByLabel('Editor settings').isVisible();
