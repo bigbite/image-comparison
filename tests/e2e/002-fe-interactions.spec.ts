@@ -80,7 +80,7 @@ test.describe('Front end interactions', () => {
       await blockFixtures.saveVisitPage();
     });
 
-    // Assert the starting divider position is 90%
+    // Assert the starting divider position is 40%
     await expect(page.locator('.wp-block-bigbite-image-comparison')).toHaveAttribute(
       'style',
       new RegExp('--bigbite-image-comparison-divider-initial-position: 40'),
