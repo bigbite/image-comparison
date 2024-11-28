@@ -60,6 +60,24 @@ Install PHP packages and create autoloader for the plugin.
 composer install
 ```
 
+### Testing Suite
+E2E tests have been created using Playwright.
+
+Run the tests headless.
+```
+npm run test:e2e
+```
+
+Debug the tests in a chromium window.
+```
+npm run test:e2e:debug
+```
+
+Review and run the tests within the Playwright UI.
+```
+npm run test:e2e -- --ui
+```
+
 ## Requirements
 
 Image Comparison requires these software with the following versions:
