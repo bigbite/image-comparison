@@ -10,9 +10,9 @@ export class BlockFixtures {
    *
    * @param imageLabel - The aria-label of the image to select from the media library
    *
-   * @usage - await blockFixtures.addFirstImageToBlock('My Image');
+   * @usage - await blockFixtures.addImageToAvailableSlot('My Image');
    */
-  async addFirstImageToBlock(imageLabel: string) {
+  async addImageToAvailableSlot(imageLabel: string) {
     await this.page
       .locator('iframe[name="editor-canvas"]')
       .contentFrame()
@@ -37,9 +37,9 @@ export class BlockFixtures {
    *
    * @param imageLabel - The aria-label of the image to select from the media library
    *
-   * @usage - await blockFixtures.addSecondImageToBlock('My Image');
+   * @usage - await blockFixtures.addImageToSecondSlot('My Image');
    */
-  async addSecondImageToBlock(imageLabel: string) {
+  async addImageToSecondSlot(imageLabel: string) {
     await this.page
       .locator('iframe[name="editor-canvas"]')
       .contentFrame()

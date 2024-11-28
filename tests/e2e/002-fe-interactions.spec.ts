@@ -38,10 +38,10 @@ test.describe('Front end interactions', () => {
 
     await test.step('populate the block', async () => {
       // Select the before image for use in the first slot
-      await blockFixtures.addFirstImageToBlock('before');
+      await blockFixtures.addImageToAvailableSlot('before');
 
       // Select the after image for use in the second slot
-      await blockFixtures.addFirstImageToBlock('after');
+      await blockFixtures.addImageToAvailableSlot('after');
 
       // Add the caption
       await blockFixtures.addCaptionToBlock(
