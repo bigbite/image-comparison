@@ -201,15 +201,7 @@ test.describe('Image Comparison block', () => {
     });
 
     await test.step('Save and visit the page', async () => {
-      // Save the page
-      await page.getByRole('button', { name: 'Publish', exact: true }).click();
-      await page
-        .getByLabel('Editor publish')
-        .getByRole('button', { name: 'Publish', exact: true })
-        .click();
-
-      // Visit the page
-      await page.getByTestId('snackbar').getByRole('link', { name: 'View Post' }).click();
+      await blockFixtures.saveVisitPage();
 
       // Make sure the heading is correct
       await expect(page.title()).resolves.toMatch('Test Image Comparison Block');
