@@ -3,6 +3,7 @@
  */
 import { ResizableBox } from '@wordpress/components';
 import { useInnerBlocksProps, useBlockProps, useSettings } from '@wordpress/block-editor';
+import { useEffect } from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -26,6 +27,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
   const [contentWidth] = useSettings('layout.contentSize');
 
   const {
+    align,
     overflow,
     dividerInitialPosition,
     dividerAxis,
@@ -61,14 +63,31 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
   let shouldDisplayResize = false;
 
   /**
+   * Overwrite the default size of the block with the theme's
+   * defined contentSize, if it exists. This should only be
+   * applied if no images have been added to the block.
+   */
+  useEffect(() => {
+    if (!shouldDisplayResize) {
+      setAttributes({ containerWidth: contentWidth });
+    }
+  }, [contentWidth]);
+
+  useEffect(() => {
+    if (['wide', 'full'].includes(align)) {
+      setAttributes({
+        containerHeight: 'auto',
+        containerWidth: 'auto',
+      });
+    }
+  }, [align, setAttributes]);
+
+  /**
    * Retrieve the inner blocks
    */
   const [{ innerBlocks }] = wp.data.select('core/block-editor').getBlocksByClientId(clientId);
 
-  /**
-   * Don't display resize handles if the user has chosen one of the alignment settings.
-   */
-  if (!attributes.align) {
+  if (!['wide', 'full'].includes(align)) {
     /**
      * Determine whether to allow the resize handles to be
      * displayed based on if an image is assigned or not
