@@ -83,11 +83,11 @@
         },
         "containerHeight": {
             "type": "string",
-            "default": null
+            "default": "auto"
         },
         "containerWidth": {
             "type": "string",
-            "default": null
+            "default": "auto"
         }
     },
     "supports": {
