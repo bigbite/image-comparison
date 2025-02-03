@@ -9,6 +9,7 @@
         "build:dev": "build-tools build --once",
         "watch:dev": "build-tools build",
         "test:e2e": "wp-env start && wp-scripts test-playwright",
+        "test:e2e:ui": "wp-env start && wp-scripts test-playwright --ui",
         "test:e2e:debug": "wp-env start && wp-scripts test-playwright --debug"
     },
     "dependencies": {
