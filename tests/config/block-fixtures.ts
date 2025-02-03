@@ -20,6 +20,9 @@ export class BlockFixtures {
       .first()
       .click();
 
+    // Ensure the media library tab is selected
+    await this.page.locator('#menu-item-browse').click();
+
     // Get the aria-checked attribute of the image
     const isImageSelected = await this.page.getByLabel(imageLabel).getAttribute('aria-checked');
 
@@ -46,6 +49,9 @@ export class BlockFixtures {
       .getByRole('button', { name: 'Select Image' })
       .nth(1)
       .click();
+
+    // Ensure the media library tab is selected
+    await this.page.locator('#menu-item-browse').click();
 
     // Get the aria-checked attribute of the image
     const isImageSelected = await this.page.getByLabel(imageLabel).getAttribute('aria-checked');
