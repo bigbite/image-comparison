@@ -5,7 +5,7 @@
     "title": "Image Comparison",
     "version": "0.0.1",
     "icon": "format-gallery",
-    "description": "Display two images in a comparison state.",
+    "description": "Draggable slider block used to compare the difference between two images.",
     "attributes": {
         "overflow": {
             "type": "boolean",
