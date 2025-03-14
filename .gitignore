@@ -4,3 +4,9 @@ dist/
 
 .DS_Store
 inc/asset-settings.php
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/artifacts
+/**/__snapshots__/
