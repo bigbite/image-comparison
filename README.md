@@ -1,10 +1,10 @@
 # Image Comparison
 
-Draggable slider component that can be used to compare the difference between two images.
+Draggable slider block used to compare the difference between two images.
 
 ## Overview
 
-Image Comparison provides a versatile draggable slider component that allows users to compare two images side-by-side. Ideal for showcasing before-and-after scenarios, Image Comparison enables easy visual comparisons through an interactive slider that can be customised to fit your theme.
+Image Comparison provides a versatile draggable slider block that allows users to compare two images side-by-side. Ideal for showcasing before-and-after scenarios, Image Comparison enables easy visual comparisons through an interactive slider that can be customised to fit your theme.
 
 ![Image Comparison screenshot](docs/image-comparison-screenshot.png)
 

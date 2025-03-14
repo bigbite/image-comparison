@@ -7,7 +7,6 @@ package.json
 # composer
 
 composer.lock
-composer.json
 
 # build tools
 
