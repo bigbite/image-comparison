@@ -27,6 +27,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
   const [contentWidth] = useSettings('layout.contentSize');
 
   const {
+    align,
     overflow,
     dividerInitialPosition,
     dividerAxis,
@@ -72,20 +73,31 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
     }
   }, [contentWidth]);
 
+  useEffect(() => {
+    if (['wide', 'full'].includes(align)) {
+      setAttributes({
+        containerHeight: 'auto',
+        containerWidth: 'auto',
+      });
+    }
+  }, [align, setAttributes]);
+
   /**
    * Retrieve the inner blocks
    */
   const [{ innerBlocks }] = wp.data.select('core/block-editor').getBlocksByClientId(clientId);
 
-  /**
-   * Determine whether to allow the resize handles to be
-   * displayed based on if an image is assigned or not
-   */
-  innerBlocks.forEach((block) => {
-    if (block?.attributes?.id) {
-      shouldDisplayResize = true;
-    }
-  });
+  if (!['wide', 'full'].includes(align)) {
+    /**
+     * Determine whether to allow the resize handles to be
+     * displayed based on if an image is assigned or not
+     */
+    innerBlocks.forEach((block) => {
+      if (block?.attributes?.id) {
+        shouldDisplayResize = true;
+      }
+    });
+  }
 
   /**
    * Only ever display the right, bottom, and bottomRight handles
