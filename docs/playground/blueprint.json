@@ -1,0 +1,42 @@
+{
+  "preferredVersions": {
+    "php": "8.2",
+    "wp": "latest"
+  },
+  "phpExtensionBundles": [
+    "kitchen-sink"
+  ],
+  "features": {
+    "networking": true
+  },
+  "landingPage": "/?p=1",
+  "steps": [
+    {
+      "step": "login",
+      "username": "admin",
+      "password": "password"
+    },
+    {
+      "step": "installPlugin",
+      "pluginZipFile": {
+        "resource": "url",
+        "url": "https://github-proxy.com/proxy/?repo=bigbite/image-comparison&branch=main-built"
+      },
+      "options": {
+        "activate": true
+      }
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp media import --post_id=1 https://raw.githubusercontent.com/bigbite/image-comparison/main/docs/playground/before.png"
+    },
+    {
+      "step": "wp-cli",
+      "command": "wp media import --post_id=1 https://raw.githubusercontent.com/bigbite/image-comparison/main/docs/playground/after.png"
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php require_once 'wordpress/wp-load.php';wp_delete_comment(1);$GLOBALS['wpdb']->update('wp_posts',['post_title'=>'Image Comparison Example','post_content'=>base64_decode('PCEtLSB3cDpiaWdiaXRlL2ltYWdlLWNvbXBhcmlzb24geyJjYXB0aW9uIjoiUGhvdG8gYnkgXHUwMDNjYSBocmVmPVx1MDAyMmh0dHBzOi8vdW5zcGxhc2guY29tL0BqYmNyZWF0ZV9cdTAwMjJcdTAwM2VKb3NlcGggQmFycmllbnRvc1x1MDAzYy9hXHUwMDNlIHZpYSBVbnNwbGFzaC4iLCJjb250YWluZXJIZWlnaHQiOiI2MjBweCIsImNvbnRhaW5lcldpZHRoIjoiNjIwcHgiLCJhbGlnbiI6ImNlbnRlciJ9IC0tPgo8IS0tIHdwOmJpZ2JpdGUvaW1hZ2UtY29tcGFyaXNvbi1pdGVtIHsiaWQiOjV9IC8tLT4KCjwhLS0gd3A6YmlnYml0ZS9pbWFnZS1jb21wYXJpc29uLWl0ZW0geyJpZCI6NH0gLy0tPgo8IS0tIC93cDpiaWdiaXRlL2ltYWdlLWNvbXBhcmlzb24gLS0+'),'comment_status'=>'closed','ping_status'=>'closed'],['id'=>1]);?>"
+    }
+  ]
+}
