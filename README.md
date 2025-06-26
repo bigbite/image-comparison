@@ -12,6 +12,8 @@ Image Comparison provides a versatile draggable slider block that allows users t
 
 [![Image comparison demo](docs/demo.png)](https://vimeo.com/1000389315)
 
+Try it out in the [WordPress Playground](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/bigbite/image-comparison/main/docs/playground/blueprint.json)!
+
 ## Documentation
 
 ### Installing
