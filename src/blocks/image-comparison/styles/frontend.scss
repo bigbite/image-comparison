@@ -5,3 +5,11 @@
 .wp-block-bigbite-image-comparison--horizontal .wp-block-bigbite-image-comparison__container {
   cursor: row-resize;
 }
+
+.wp-block-bigbite-image-comparison__divider button {
+  touch-action: pan-y;
+}
+
+.wp-block-bigbite-image-comparison--horizontal .wp-block-bigbite-image-comparison__divider button {
+  touch-action: pan-x;
+}

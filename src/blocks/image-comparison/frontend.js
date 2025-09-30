@@ -62,19 +62,15 @@ if (imageComparisonBlocks?.length > 0) {
       'wp-block-bigbite-image-comparison--horizontal',
     );
 
-    const client = hasHorizontalAxisDivider ? event?.clientY : event?.clientX;
-    const targetDOMRect = event?.target?.getBoundingClientRect();
-    const targetPositionOffset = hasHorizontalAxisDivider ? targetDOMRect?.y : targetDOMRect?.x;
-    let position =
-      ((client - targetPositionOffset) /
-        (hasHorizontalAxisDivider ? targetDOMRect?.height : targetDOMRect?.width)) *
-      100;
+    const containerRect = imageContainer.getBoundingClientRect();
+    const client = hasHorizontalAxisDivider ? event.clientY : event.clientX;
+    const offset = hasHorizontalAxisDivider ? containerRect.y : containerRect.x;
+    const size = hasHorizontalAxisDivider ? containerRect.height : containerRect.width;
 
-    if (position < 0) {
-      position = 0;
-    } else if (position > 100) {
-      position = 100;
-    }
+    let position = ((client - offset) / size) * 100;
+
+    if (position < 0) position = 0;
+    if (position > 100) position = 100;
 
     imageComparisonBlock.style.setProperty(
       '--bigbite-image-comparison-divider-initial-position',
@@ -145,13 +141,62 @@ if (imageComparisonBlocks?.length > 0) {
       '.wp-block-bigbite-image-comparison__divider button',
     );
 
-    imageContainer.addEventListener('pointerdown', (event) => activateIsPointerDownState(event));
-    imageContainer.addEventListener('pointermove', (event) =>
-      pointerController(event, imageComparisonBlock),
-    );
-    imageContainer.addEventListener('pointerleave', (event) =>
-      pointerController(event, imageComparisonBlock),
-    );
+    // Check if it's a touch device
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    // If it's a touch device, only allow dragging from the divider button
+    if (isTouchDevice) {
+      dividerButton.addEventListener('pointerdown', (event) => {
+        activateIsPointerDownState(event);
+
+        /**
+         * Pointer move and up handlers
+         * @param {object} moveEvent pointermove event
+         * @param {object} upEvent pointerup event
+         *
+         */
+        const moveHandler = (moveEvent) => pointerController(moveEvent, imageComparisonBlock);
+
+        /**
+         * Pointer up handler
+         *
+         */
+        const upHandler = () => {
+          deactivateIsPointerDownState();
+          window.removeEventListener('pointermove', moveHandler);
+          window.removeEventListener('pointerup', upHandler);
+        };
+
+        window.addEventListener('pointermove', moveHandler);
+        window.addEventListener('pointerup', upHandler);
+      });
+    } else {
+      // If it's not a touch device, allow dragging from anywhere on the image
+      imageContainer.addEventListener('pointerdown', (event) => {
+        activateIsPointerDownState(event);
+
+        /**
+         * Pointer move and up handlers
+         * @param {object} moveEvent pointermove event
+         * @param {object} upEvent pointerup event
+         *
+         */
+        const moveHandler = (moveEvent) => pointerController(moveEvent, imageComparisonBlock);
+
+        /**
+         * Pointer up handler
+         *
+         */
+        const upHandler = () => {
+          deactivateIsPointerDownState();
+          window.removeEventListener('pointermove', moveHandler);
+          window.removeEventListener('pointerup', upHandler);
+        };
+
+        window.addEventListener('pointermove', moveHandler);
+        window.addEventListener('pointerup', upHandler);
+      });
+    }
 
     dividerButton.addEventListener('keydown', (event) =>
       keyboardController(event, imageComparisonBlock),
