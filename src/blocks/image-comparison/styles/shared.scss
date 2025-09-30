@@ -4,7 +4,7 @@
 
 .wp-block-bigbite-image-comparison__container {
   max-width: 100%;
-  touch-action: none;
+  // touch-action: none;
   border: 0 !important;
   padding: 0 !important;
   line-height: 0 !important;
@@ -24,7 +24,7 @@
   display: inline-flex;
   position: absolute;
   align-items: center;
-  pointer-events: none;
+  // pointer-events: none;
   transform: translate(-50%, 0);
   left: calc(var(--bigbite-image-comparison-divider-initial-position) * 1%);
 
@@ -46,7 +46,7 @@
   padding: 8px;
   display: flex;
   align-items: center;
-  pointer-events: none;
+  // pointer-events: none;
   justify-content: center;
   background: var(--bigbite-image-comparison-divider-box-colour);
   gap: calc(var(--bigbite-image-comparison-divider-icon-gap) * 1px);
